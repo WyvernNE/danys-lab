@@ -1,10 +1,13 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { cooklang } from './loaders/cooklang';
+import { cooklang, recipeSchema } from './loaders/cooklang';
+
+const contentDir = (name: string) => `./src/content/${name}`;
+const markdown = (name: string) => glob({ pattern: '**/*.{md,mdx}', base: contentDir(name) });
 
 const portfolio = defineCollection({
-	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/portfolio' }),
+	loader: markdown('portfolio'),
 	schema: z.object({
 		title: z.string(),
 		description: z.string().optional(),
@@ -13,7 +16,7 @@ const portfolio = defineCollection({
 });
 
 const projects = defineCollection({
-	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
+	loader: markdown('projects'),
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
@@ -25,41 +28,9 @@ const projects = defineCollection({
 	}),
 });
 
-const quantity = z.union([z.string(), z.number()]);
-
-const ingredient = z.object({
-	type: z.literal('ingredient'),
-	name: z.string(),
-	quantity,
-	units: z.string(),
-	step: z.number().optional(),
-});
-
-const cookware = z.object({
-	type: z.literal('cookware'),
-	name: z.string(),
-	quantity,
-	step: z.number().optional(),
-});
-
-const timer = z.object({
-	type: z.literal('timer'),
-	name: z.string().optional(),
-	quantity,
-	units: z.string(),
-});
-
-const text = z.object({ type: z.literal('text'), value: z.string() });
-
 const drinks = defineCollection({
-	loader: cooklang({ base: './src/content/drinks' }),
-	schema: z.object({
-		// Cooklang `>> key: value` lines; every value is a string.
-		metadata: z.record(z.string(), z.string()),
-		ingredients: z.array(ingredient),
-		cookwares: z.array(cookware),
-		steps: z.array(z.array(z.discriminatedUnion('type', [ingredient, cookware, timer, text]))),
-	}),
+	loader: cooklang({ base: contentDir('drinks') }),
+	schema: recipeSchema,
 });
 
 export const collections = { portfolio, projects, drinks };
