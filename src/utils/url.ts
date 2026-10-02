@@ -1,2 +1,0 @@
-/** Prefixes a site path with the configured `base` (e.g. `/danys-lab`). */
-export const url = (path = '') => `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;

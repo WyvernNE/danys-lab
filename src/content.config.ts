@@ -1,36 +1,33 @@
-import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
-import { z } from 'astro/zod';
-import { cooklang, recipeSchema } from './loaders/cooklang';
+import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
+import { postSchema, momentSchema, specSchema, seriesSchema } from "shirones/collections";
 
-const contentDir = (name: string) => `./src/content/${name}`;
-const markdown = (name: string) => glob({ pattern: '**/*.{md,mdx}', base: contentDir(name) });
-
-const portfolio = defineCollection({
-	loader: markdown('portfolio'),
-	schema: z.object({
-		title: z.string(),
-		description: z.string().optional(),
-		order: z.number().default(0),
-	}),
+/**
+ * Shirone content collections — inline schemas for full type safety and Astro
+ * typegen support (a schema hidden behind a helper call cannot be
+ * introspected). Edit the `base` paths if you moved the content directory;
+ * the schemas themselves come from the theme.
+ *
+ * Generated from the theme's `src/integration/collections.manifest.json`.
+ */
+const posts = defineCollection({
+	loader: glob({ base: "./shirones/content/posts", pattern: "**/*.{md,mdx}" }),
+	schema: postSchema,
 });
 
-const projects = defineCollection({
-	loader: markdown('projects'),
-	schema: z.object({
-		title: z.string(),
-		description: z.string(),
-		date: z.coerce.date(),
-		tags: z.array(z.string()).default([]),
-		url: z.url().optional(),
-		repo: z.url().optional(),
-		draft: z.boolean().default(false),
-	}),
+const moments = defineCollection({
+	loader: glob({ base: "./shirones/content/moments", pattern: "**/*.md" }),
+	schema: momentSchema,
 });
 
-const drinks = defineCollection({
-	loader: cooklang({ base: contentDir('drinks') }),
-	schema: recipeSchema,
+const spec = defineCollection({
+	loader: glob({ base: "./shirones/content/spec", pattern: "**/*.{md,mdx}" }),
+	schema: specSchema,
 });
 
-export const collections = { portfolio, projects, drinks };
+const series = defineCollection({
+	loader: glob({ base: "./shirones/content/series", pattern: "**/*.md" }),
+	schema: seriesSchema,
+});
+
+export const collections = { posts, moments, spec, series } as const;
