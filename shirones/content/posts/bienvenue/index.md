@@ -2,6 +2,7 @@
 title: Bienvenue au labo
 published: 2026-10-02
 description: Le point de départ de Dany's Lab — ce que vous trouverez ici.
+image: ./cover.webp
 tags: [Annonce]
 category: Journal
 pinned: true

@@ -2,6 +2,7 @@
 title: Espresso
 published: 2026-10-01
 description: "L'espresso de base du labo : ratio 1:2, 18 g de café pour 36 g en tasse."
+image: ./cover.webp
 tags: [Café, Espresso, Recette]
 category: Labo café
 series: labo-cafe

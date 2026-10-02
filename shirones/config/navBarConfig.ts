@@ -131,7 +131,9 @@ export const LinkPresets: Record<string, NavBarLink> = {
 	LaboCafe: {
 		name: "Labo café",
 		url: "/series/labo-cafe/",
-		icon: "material-symbols:coffee-outline-rounded",
+		// Icône choisie parmi celles que le menu mobile sait afficher hors ligne
+		// (liste : node_modules/shirones/src/generated/local-icon-collections.ts).
+		icon: "material-symbols:menu-book-rounded",
 	},
 	GitHub: {
 		name: "GitHub",
