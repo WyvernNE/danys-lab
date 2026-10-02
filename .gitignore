@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # shirones config cache (generated)
 .shirones/
+
+# articles générés depuis shirones/recipes/*.cook
+shirones/content/posts/recettes/

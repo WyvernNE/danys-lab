@@ -9,20 +9,22 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "images": "node scripts/generate-images.mjs"
+    "images": "node scripts/generate-images.mjs",
+    "recipes": "node integrations/cooklang.mjs"
   },
   "dependencies": {
-    "astro": "^7.3.5",
-    "svelte": "^5.57.1",
+    "@astrojs/check": "^0.9.10",
     "@astrojs/svelte": "^9.0.1",
-    "sharp": "^0.35.4",
-    "@iconify-json/material-symbols": "^1.2.93",
+    "@cooklang/cooklang": "0.18.7",
     "@iconify-json/fa6-brands": "^1.2.6",
     "@iconify-json/fa6-regular": "^1.2.4",
     "@iconify-json/fa6-solid": "^1.2.4",
+    "@iconify-json/material-symbols": "^1.2.93",
     "@iconify-json/simple-icons": "^1.2.93",
-    "@astrojs/check": "^0.9.10",
-    "typescript": "^6.0.3",
-    "shirones": "^0.1.5"
+    "astro": "^7.3.5",
+    "sharp": "^0.35.4",
+    "shirones": "^0.1.5",
+    "svelte": "^5.57.1",
+    "typescript": "^6.0.3"
   }
 }
