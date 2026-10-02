@@ -279,9 +279,9 @@ for (const size of [32, 128, 180, 192]) {
 await save(banner(2560, 1440), "shirones/assets/banner/desktop.webp");
 await save(banner(1080, 1920), "shirones/assets/banner/mobile.webp");
 
-await save(coverWelcome(), "shirones/content/posts/bienvenue/cover.webp");
-await save(coverEspresso(), "shirones/recipes/espresso.webp");
-await save(coverMatcha(), "shirones/recipes/matcha-latte.webp");
+await save(coverWelcome(), "shirones/content/fr/posts/bienvenue/cover.webp");
+await save(coverEspresso(), "shirones/recipes/fr/espresso.webp");
+await save(coverMatcha(), "shirones/recipes/fr/matcha-latte.webp");
 
 await save(coverProjectSite(), "public/images/projects/danys-lab.webp");
 await save(coverProjectRecipes(), "public/images/projects/labo-cafe.webp");

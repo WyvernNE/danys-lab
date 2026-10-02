@@ -5,14 +5,17 @@
   "type": "module",
   "packageManager": "pnpm@12.6.0",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
+    "dev": "node scripts/site.mjs dev fr",
+    "dev:en": "node scripts/site.mjs dev en",
+    "build": "node scripts/site.mjs build",
+    "preview": "node scripts/site.mjs preview",
+    "translate": "node scripts/translate.mjs",
     "astro": "astro",
     "images": "node scripts/generate-images.mjs",
     "recipes": "node integrations/cooklang.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0",
     "@astrojs/check": "^0.9.10",
     "@astrojs/svelte": "^9.0.1",
     "@cooklang/cooklang": "0.18.7",

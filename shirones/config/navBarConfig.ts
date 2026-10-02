@@ -20,6 +20,14 @@ import type {
 } from "@/types/navBarConfig";
 import { getUserConfig } from "@/utils/config-overlay.ts";
 import { pruneUnavailableNavLinks } from "@/utils/nav-utils.ts";
+import {
+	currentLocaleCode,
+	getLocale,
+	LOCALES,
+	localeBase,
+	SITE_ORIGIN,
+} from "../i18n/locales.mjs";
+import { messages } from "../i18n/messages.mjs";
 
 /**
  * 导航栏配置（统一单一来源）。
@@ -129,7 +137,7 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		pageKey: "about",
 	},
 	LaboCafe: {
-		name: "Labo café",
+		name: messages.nav.laboCafe,
 		url: "/series/labo-cafe/",
 		// Icône choisie parmi celles que le menu mobile sait afficher hors ligne
 		// (liste : node_modules/shirones/src/generated/local-icon-collections.ts).
@@ -143,6 +151,23 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		pageKey: "github",
 	},
 };
+
+/**
+ * Sélecteur de langue : un lien par langue vers sa page d'accueil.
+ * Le paramètre `?lang=` est repéré par integrations/i18n.mjs, qui envoie plutôt
+ * vers la même page dans l'autre langue (ou son accueil si elle n'est pas traduite).
+ */
+const current = getLocale(currentLocaleCode());
+const languageMenu: NavBarLink | null =
+	LOCALES.length > 1
+		? {
+				name: `${current.flag} ${current.code.toUpperCase()}`,
+				children: LOCALES.map((l) => ({
+					name: `${l.flag} ${l.label}`,
+					url: `${SITE_ORIGIN}${localeBase(l.code)}?lang=${l.code}`,
+				})),
+			}
+		: null;
 
 const defaultNavBarConfig: NavBarConfig = {
 	links: [
@@ -161,6 +186,7 @@ const defaultNavBarConfig: NavBarConfig = {
 				LinkPresets.GitHub,
 			],
 		},
+		...(languageMenu ? [languageMenu] : []),
 	],
 };
 

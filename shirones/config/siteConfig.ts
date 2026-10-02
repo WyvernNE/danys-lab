@@ -4,17 +4,28 @@ import type {
 	TextureConfig,
 } from "@/types/textureConfig";
 import { withUserConfig } from "@/utils/config-overlay.ts";
+import {
+	currentLocaleCode,
+	getLocale,
+	localeBase,
+	SITE_ORIGIN,
+} from "../i18n/locales.mjs";
+import { messages } from "../i18n/messages.mjs";
+
+// Langue en cours de construction (voir shirones/i18n/locales.mjs).
+const locale = getLocale(currentLocaleCode());
 
 /**
  * 站点核心配置：标题 / 语言 / 主题色（HCT 动态配色）/ 横幅 / 目录 / 进度条 / favicon。
  * 类型见 src/types/config.ts。
  */
 export const siteConfig: SiteConfig = withUserConfig("site", {
-	site: "https://wyvernne.github.io/",
-	// Le site est publié sur GitHub Pages sous /danys-lab/ (nom du dépôt).
-	base: "/danys-lab/",
+	site: `${SITE_ORIGIN}/`,
+	// GitHub Pages sous /danys-lab/ ; chaque langue autre que le français a son
+	// propre sous-dossier (/danys-lab/en/…).
+	base: localeBase(locale.code),
 	title: "Dany's Lab",
-	subtitle: "Portfolio, projets et labo café",
+	subtitle: messages.site.subtitle,
 	// 电脑端顶栏标题与导航内容区域："left" 左对齐，"center" 居中。
 	topAppBar: {
 		contentAlign: "center",
@@ -29,8 +40,8 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 		texture: true, // 是否展示背景纹理选择
 	},
 	// Le thème ne déclare pas "fr" dans son type, mais le gère à l'exécution :
-	// <html lang="fr">, dates en français, et libellés fournis par i18nConfig.ts.
-	lang: "fr" as SiteConfig["lang"],
+	// <html lang>, dates localisées, et libellés fournis par i18nConfig.ts.
+	lang: locale.themeLang as SiteConfig["lang"],
 	// IANA time zone for precise post and moment timestamps. It is independent of lang.
 	timeZone: "Europe/Zurich",
 	themeColor: {
@@ -74,11 +85,7 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 			// 仅在首页 Banner 中显示，标题与副标题会上下居中排列。
 			enable: true,
 			title: "Dany's Lab",
-			subtitle: [
-				"Un café, un éditeur, et beaucoup d'essais",
-				"Portfolio, projets et recettes",
-				"Moudre, extraire, recommencer",
-			],
+			subtitle: messages.site.bannerSubtitles,
 			typewriter: {
 				// 副标题逐字显示；关闭后直接显示完整副标题。
 				enable: true,

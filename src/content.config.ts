@@ -2,6 +2,10 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { postSchema, momentSchema, specSchema, seriesSchema } from "shirones/collections";
+import { currentLocaleCode } from "../shirones/i18n/locales.mjs";
+
+// Contenu de la langue en cours de construction : shirones/content/<langue>/.
+const root = `./shirones/content/${currentLocaleCode()}`;
 
 /**
  * Shirone content collections — inline schemas for full type safety and Astro
@@ -12,7 +16,7 @@ import { postSchema, momentSchema, specSchema, seriesSchema } from "shirones/col
  * Generated from the theme's `src/integration/collections.manifest.json`.
  */
 const posts = defineCollection({
-	loader: glob({ base: "./shirones/content/posts", pattern: "**/*.{md,mdx}" }),
+	loader: glob({ base: `${root}/posts`, pattern: "**/*.{md,mdx}" }),
 	// Dates acceptées aussi sous forme de texte ("2026-10-01"), comme les écrit
 	// parfois Pages CMS.
 	schema: postSchema.extend({
@@ -22,17 +26,17 @@ const posts = defineCollection({
 });
 
 const moments = defineCollection({
-	loader: glob({ base: "./shirones/content/moments", pattern: "**/*.md" }),
+	loader: glob({ base: `${root}/moments`, pattern: "**/*.md" }),
 	schema: momentSchema,
 });
 
 const spec = defineCollection({
-	loader: glob({ base: "./shirones/content/spec", pattern: "**/*.{md,mdx}" }),
+	loader: glob({ base: `${root}/spec`, pattern: "**/*.{md,mdx}" }),
 	schema: specSchema,
 });
 
 const series = defineCollection({
-	loader: glob({ base: "./shirones/content/series", pattern: "**/*.md" }),
+	loader: glob({ base: `${root}/series`, pattern: "**/*.md" }),
 	schema: seriesSchema,
 });
 

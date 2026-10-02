@@ -1,0 +1,14 @@
+{
+	"en": {
+		"content:moments/.gitkeep": "e3b0c44298fc1c14",
+		"content:posts/bienvenue/cover.webp": "f81a8f16a94d8c92",
+		"content:posts/bienvenue/index.md": "9d4e169b2e408cc9",
+		"content:series/labo-cafe.md": "92dc5c24bffbe516",
+		"content:spec/about.md": "663544f757eb7f47",
+		"messages:": "f3f005a16427d8b6",
+		"recipes:espresso.cook": "456648487262c6c9",
+		"recipes:espresso.webp": "a0ca2d2f58b2b34e",
+		"recipes:matcha-latte.cook": "44bdfc6cade0b38a",
+		"recipes:matcha-latte.webp": "43f485b3f28504eb"
+	}
+}

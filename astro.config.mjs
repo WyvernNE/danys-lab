@@ -1,13 +1,20 @@
 import { defineConfig } from "astro/config";
 import shirones from "shirones";
 import cooklang from "./integrations/cooklang.mjs";
+import i18n from "./integrations/i18n.mjs";
 
 // Site-level settings (site URL, base, title, theme colour, fonts, …) live in
 // `shirones/config/` so they stay typed and version-controlled with your
 // content. This file only wires the theme in.
+// Une construction = une langue (variable PUBLIC_SITE_LOCALE, voir
+// shirones/i18n/locales.mjs). `pnpm build` les construit toutes et les assemble
+// dans dist/ (scripts/build.mjs).
 export default defineConfig({
+  outDir: process.env.ASTRO_OUT_DIR ?? "dist",
   integrations: [
-    // Recettes Cooklang (shirones/recipes/*.cook) → articles du blog.
+    // Sélecteur de langue (même page dans l'autre langue).
+    i18n(),
+    // Recettes Cooklang (shirones/recipes/<langue>/*.cook) → articles du blog.
     cooklang(),
     shirones({
       // Pages du thème désactivées dans shirones/config/ : on ne les génère pas

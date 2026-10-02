@@ -1,0 +1,49 @@
+{
+	"site": {
+		"subtitle": "Portfolio, projects and coffee lab",
+		"bannerSubtitles": [
+			"A coffee, an editor, and lots of experiments",
+			"Portfolio, projects and recipes",
+			"Grind, brew, repeat"
+		]
+	},
+	"profile": {
+		"bio": "I tinker with code, projects and coffee recipes."
+	},
+	"announcement": {
+		"content": "Welcome to the lab! The site is under construction, recipes are coming little by little.",
+		"linkText": "View the repository"
+	},
+	"nav": {
+		"laboCafe": "Coffee lab",
+		"language": "Language"
+	},
+	"projects": {
+		"categories": {
+			"web": "Web",
+			"cafe": "Coffee"
+		},
+		"items": {
+			"danys-lab": {
+				"summary": "This site: portfolio, blog and coffee recipe notebook, built with Astro and the Shirone theme.",
+				"coverAlt": "Preview of the Dany's Lab home page"
+			},
+			"labo-cafe": {
+				"title": "Coffee lab",
+				"summary": "My tested and documented drink recipes: ratios, temperatures and extraction times.",
+				"coverAlt": "Espresso recipe card"
+			}
+		}
+	},
+	"recipes": {
+		"defaultCategory": "Coffee lab",
+		"servings": "Servings",
+		"time": "Time",
+		"difficulty": "Difficulty",
+		"ingredients": "Ingredients",
+		"cookware": "Equipment",
+		"steps": "Steps",
+		"prepTime": "prep",
+		"cookTime": "cook"
+	}
+}

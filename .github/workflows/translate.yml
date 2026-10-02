@@ -1,0 +1,112 @@
+name: Traduire le contenu
+
+# Quand du contenu français arrive sur dev, Claude traduit ce qui a changé dans
+# les autres langues. Les traductions attendent dans une pull request
+# « i18n/traductions → dev » : rien n'est publié avant sa relecture et sa fusion.
+#
+# Prérequis (une fois) :
+#   - secret du dépôt ANTHROPIC_API_KEY (Settings → Secrets and variables → Actions) ;
+#   - Settings → Actions → General → Workflow permissions : cocher
+#     « Allow GitHub Actions to create and approve pull requests ».
+on:
+  push:
+    branches: [dev]
+    paths:
+      - "shirones/content/fr/**"
+      - "shirones/recipes/fr/**"
+      - "shirones/i18n/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: translate
+  cancel-in-progress: false
+
+env:
+  BRANCH: i18n/traductions
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v7
+        with:
+          ref: dev
+          fetch-depth: 0
+
+      - name: Installer pnpm (version de package.json)
+        uses: pnpm/action-setup@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Installer les dépendances
+        run: pnpm install --frozen-lockfile
+
+      # On repart de la branche de traductions si elle existe déjà : les
+      # corrections faites à la main dans la PR ouverte sont conservées.
+      - name: Préparer la branche de traductions
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null; then
+            git fetch origin "$BRANCH"
+            git checkout -B "$BRANCH" "origin/$BRANCH"
+            git merge --no-edit origin/dev
+          else
+            git checkout -B "$BRANCH" origin/dev
+          fi
+
+      - name: Traduire avec Claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        # Un échec sur un fichier n'empêche pas de proposer les autres : il est listé dans la PR.
+        run: pnpm translate --report "$RUNNER_TEMP/rapport.md" || echo "::warning::Certaines traductions ont échoué (voir la pull request)."
+
+      - name: Vérifier que le site se construit avec les traductions
+        run: |
+          if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
+            echo "Rien de nouveau à traduire."
+          else
+            pnpm build
+          fi
+
+      - name: Pousser et ouvrir (ou mettre à jour) la pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add -A shirones
+          if git diff --cached --quiet; then
+            echo "Aucune traduction à proposer."
+            exit 0
+          fi
+          git commit -m "chore(i18n): traductions IA à valider"
+          git push origin "$BRANCH"
+          {
+            echo "## 🌐 Traductions générées par l'IA — à valider"
+            echo
+            echo "Relis (et corrige si besoin) les fichiers ci-dessous, directement dans cette PR"
+            echo "ou depuis Pages CMS sur la branche \`$BRANCH\`. **Fusionner = valider** :"
+            echo "les traductions rejoignent \`dev\`, puis le site avec la prochaine PR dev → main."
+            echo
+            echo "### Dernier passage"
+            echo
+            cat "$RUNNER_TEMP/rapport.md" 2>/dev/null || echo "_(pas de rapport)_"
+            echo "### Tous les fichiers en attente dans cette PR"
+            echo
+            git diff --name-only origin/dev...HEAD -- shirones | sed 's/^/- `/; s/$/`/'
+          } > "$RUNNER_TEMP/body.md"
+          if gh pr view "$BRANCH" --json state -q .state 2>/dev/null | grep -q OPEN; then
+            gh pr edit "$BRANCH" --body-file "$RUNNER_TEMP/body.md"
+          else
+            gh pr create --base dev --head "$BRANCH" \
+              --title "🌐 Traductions IA à valider" \
+              --body-file "$RUNNER_TEMP/body.md"
+          fi
