@@ -19,12 +19,12 @@ export const projectsConfig: ProjectsConfig = withUserConfig("projects", {
 		{
 			key: "web",
 			label: "Web",
-			icon: "material-symbols:language",
+			icon: "material-symbols:web",
 		},
 		{
 			key: "cafe",
 			label: "Café",
-			icon: "material-symbols:coffee-outline-rounded",
+			icon: "material-symbols:menu-book-rounded",
 		},
 	],
 	// disabledKeys: [],

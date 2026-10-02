@@ -2,6 +2,7 @@
 title: Matcha latte
 published: 2026-10-01
 description: Matcha fouetté à l'eau chaude puis allongé au lait d'avoine.
+image: ./cover.webp
 tags: [Matcha, Latte, Recette]
 category: Labo café
 series: labo-cafe

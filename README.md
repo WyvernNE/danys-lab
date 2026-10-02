@@ -11,6 +11,7 @@ pnpm install   # installer les dépendances (une seule fois)
 pnpm dev       # serveur local sur http://localhost:4321/danys-lab/
 pnpm build     # génère le site statique dans dist/
 pnpm preview   # prévisualise le build
+pnpm images    # régénère les illustrations (scripts/generate-images.mjs)
 ```
 
 Chaque push sur `main` publie automatiquement le site sur GitHub Pages
@@ -26,7 +27,10 @@ Chaque push sur `main` publie automatiquement le site sur GitHub Pages
 | `shirones/content/posts/` | articles du blog et recettes (Markdown) |
 | `shirones/content/series/` | séries d'articles (ex. `labo-cafe.md`) |
 | `shirones/content/spec/about.md` | page « À propos » |
-| `public/` | images, logo, favicons, bannière |
+| `public/` | logo, favicons, image de partage (`images/og.jpg`), couvertures de projets (`images/projects/`) |
+| `shirones/assets/` | avatar et bannière (optimisés automatiquement) |
+| `shirones/content/posts/<article>/cover.webp` | couverture d'un article (champ `image: ./cover.webp`) |
+| `scripts/generate-images.mjs` | dessine toutes ces illustrations ; modifie-le puis lance `pnpm images` |
 | `src/components/`, `src/layouts/` | remplacer un composant du thème (même chemin que dans le thème) |
 
 Les articles de démonstration du thème restent consultables dans
