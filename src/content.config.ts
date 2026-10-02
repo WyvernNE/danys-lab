@@ -1,5 +1,6 @@
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
+import { z } from "astro/zod";
 import { postSchema, momentSchema, specSchema, seriesSchema } from "shirones/collections";
 
 /**
@@ -12,7 +13,12 @@ import { postSchema, momentSchema, specSchema, seriesSchema } from "shirones/col
  */
 const posts = defineCollection({
 	loader: glob({ base: "./shirones/content/posts", pattern: "**/*.{md,mdx}" }),
-	schema: postSchema,
+	// Dates acceptées aussi sous forme de texte ("2026-10-01"), comme les écrit
+	// parfois Pages CMS.
+	schema: postSchema.extend({
+		published: z.coerce.date(),
+		updated: z.coerce.date().optional(),
+	}),
 });
 
 const moments = defineCollection({

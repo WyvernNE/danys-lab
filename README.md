@@ -12,6 +12,7 @@ pnpm dev       # serveur local sur http://localhost:4321/danys-lab/
 pnpm build     # génère le site statique dans dist/
 pnpm preview   # prévisualise le build
 pnpm images    # régénère les illustrations (scripts/generate-images.mjs)
+pnpm recipes   # convertit les recettes Cooklang sans lancer le site
 ```
 
 Chaque push sur `main` publie automatiquement le site sur GitHub Pages
@@ -24,7 +25,8 @@ Chaque push sur `main` publie automatiquement le site sur GitHub Pages
 | `shirones/config/` | réglages du site : titre, couleur, menu (`navBarConfig.ts`), barre latérale, profil… |
 | `shirones/config/i18nConfig.ts` | traduction française de l'interface |
 | `shirones/config/data/` | données des pages : projets, compétences, timeline… |
-| `shirones/content/posts/` | articles du blog et recettes (Markdown) |
+| `shirones/recipes/*.cook` | **recettes en Cooklang** (+ image du même nom, ex. `espresso.webp`) |
+| `shirones/content/posts/` | articles du blog (Markdown) |
 | `shirones/content/series/` | séries d'articles (ex. `labo-cafe.md`) |
 | `shirones/content/spec/about.md` | page « À propos » |
 | `public/` | logo, favicons, image de partage (`images/og.jpg`), couvertures de projets (`images/projects/`) |
@@ -35,6 +37,47 @@ Chaque push sur `main` publie automatiquement le site sur GitHub Pages
 
 Les articles de démonstration du thème restent consultables dans
 `node_modules/shirones/template/` après un `pnpm install`.
+
+## Écrire une recette (Cooklang)
+
+Crée `shirones/recipes/ma-recette.cook` :
+
+```cook
+---
+title: Cappuccino
+published: 2026-10-05
+description: Espresso et lait microbullé.
+tags: [Café, Recette]
+servings: 1
+time: 5 min
+difficulty: facile
+seriesOrder: 3
+---
+
+> Une intro facultative (les lignes « > » sont des notes).
+
+Extraire @café moulu{18%g} dans la #machine à espresso{} pendant ~{28%s}.
+
+Mousser @lait{120%ml} jusqu'à 60 °C.
+```
+
+- `@ingrédient{quantité%unité}`, `#ustensile{}`, `~{durée%unité}` (unités de temps : `s`, `min`, `h`).
+- `== Section ==` pour découper les étapes.
+- Couverture : une image `ma-recette.webp` à côté du fichier, ou le champ `image`.
+- Par défaut, la recette rejoint la catégorie et la série « Labo café ».
+
+À chaque `pnpm dev` ou `pnpm build`, les recettes sont converties en articles dans
+`shirones/content/posts/recettes/` (dossier généré, ignoré par Git : on ne le modifie
+pas à la main). Le convertisseur est dans `integrations/cooklang.mjs`.
+
+## Éditer depuis le navigateur (Pages CMS)
+
+1. Va sur <https://app.pagescms.org> et connecte-toi avec GitHub.
+2. Autorise l'accès au dépôt `danys-lab`.
+3. Les sections **Recettes**, **Articles** et **Page À propos** apparaissent (config : `.pages.yml`).
+
+Chaque enregistrement crée un commit sur `main`, et le site se met à jour tout seul.
+Les images envoyées vont dans `shirones/assets/uploads/`.
 
 ## Mettre à jour le thème
 
@@ -50,3 +93,6 @@ Ce site utilise le thème **[Shirone](https://github.com/LyraVoid/Shirone)**, cr
 [`shirones`](https://github.com/yCENzh/shirones) maintenu par
 [yCENzh](https://github.com/yCENzh). Le thème est distribué sous licence MIT.
 Merci à eux !
+
+Les recettes sont analysées par le parser officiel
+[Cooklang](https://cooklang.org) (`@cooklang/cooklang`, licence MIT).

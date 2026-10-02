@@ -1,0 +1,130 @@
+# Configuration de Pages CMS (https://pagescms.org)
+# Connecte-toi sur https://app.pagescms.org avec ton compte GitHub, puis
+# choisis le dépôt danys-lab : chaque enregistrement devient un commit.
+
+media:
+  # Images envoyées depuis le CMS (couvertures d'articles et de recettes).
+  # Le chemin enregistré est relatif aux articles : c'est ce que le thème attend.
+  input: shirones/assets/uploads
+  output: ../../assets/uploads
+
+content:
+  # ── Recettes Cooklang ────────────────────────────────────────────────────
+  - name: recettes
+    label: Recettes
+    type: collection
+    path: shirones/recipes
+    filename: "{primary}.cook"
+    extension: cook
+    format: yaml-frontmatter
+    view:
+      fields: [title, published, difficulty]
+      primary: title
+      sort: [published, title]
+      default:
+        sort: published
+        order: desc
+    fields:
+      - name: title
+        label: Titre
+        type: string
+        required: true
+      - name: published
+        label: Date de publication
+        type: date
+        required: true
+      - name: description
+        label: Description
+        type: text
+      - name: image
+        label: Couverture
+        type: image
+        description: Facultatif si une image porte le même nom que la recette (ex. espresso.webp).
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: servings
+        label: Portions
+        type: number
+      - name: time
+        label: Temps
+        type: string
+        description: "Ex. : 5 min, 1 h 30 min"
+      - name: difficulty
+        label: Difficulté
+        type: select
+        options:
+          values: [facile, moyen, difficile]
+      - name: seriesOrder
+        label: Ordre dans la série Labo café
+        type: number
+      - name: draft
+        label: Brouillon (non publié)
+        type: boolean
+        default: false
+      - name: body
+        label: Recette (Cooklang)
+        type: code
+        description: "@ingrédient{quantité%unité} · #ustensile{} · ~{durée%min} (unités de temps : s, min, h) · > note"
+
+  # ── Articles de blog ─────────────────────────────────────────────────────
+  - name: articles
+    label: Articles
+    type: collection
+    path: shirones/content/posts
+    filename: "{primary}.md"
+    format: yaml-frontmatter
+    view:
+      fields: [title, published, category]
+      primary: title
+      default:
+        sort: published
+        order: desc
+    fields:
+      - name: title
+        label: Titre
+        type: string
+        required: true
+      - name: published
+        label: Date de publication
+        type: date
+        required: true
+      - name: description
+        label: Description
+        type: text
+      - name: image
+        label: Couverture
+        type: image
+      - name: category
+        label: Catégorie
+        type: string
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: series
+        label: Série (identifiant, ex. labo-cafe)
+        type: string
+      - name: pinned
+        label: Épinglé en haut de l'accueil
+        type: boolean
+        default: false
+      - name: draft
+        label: Brouillon (non publié)
+        type: boolean
+        default: false
+      - name: body
+        label: Contenu
+        type: rich-text
+
+  # ── Page À propos ────────────────────────────────────────────────────────
+  - name: about
+    label: Page À propos
+    type: file
+    path: shirones/content/spec/about.md
+    format: yaml-frontmatter
+    fields:
+      - name: body
+        label: Contenu
+        type: rich-text
