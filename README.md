@@ -15,8 +15,19 @@ pnpm images    # régénère les illustrations (scripts/generate-images.mjs)
 pnpm recipes   # convertit les recettes Cooklang sans lancer le site
 ```
 
-Chaque push sur `main` publie automatiquement le site sur GitHub Pages
-(`.github/workflows/deploy.yml`).
+## Routine de travail
+
+```
+dev  ──(je teste)──>  pull request dev → main  ──(je fusionne)──>  main = site en ligne
+```
+
+1. Travailler sur `dev` : `git checkout dev && git pull`.
+2. Vérifier en local : `pnpm dev` (rapide) ou `pnpm build && pnpm preview` (version finale).
+3. `git push` : GitHub vérifie automatiquement le build (onglet **Actions**, workflow « Vérifier le site »).
+4. Quand c'est prêt : ouvrir une pull request **dev → main** sur GitHub, relire, fusionner.
+5. La fusion dans `main` publie le site (`.github/workflows/deploy.yml`).
+
+Après une fusion, remettre `dev` à jour : `git checkout dev && git pull origin main && git push`.
 
 ## Où modifier quoi
 
@@ -76,7 +87,9 @@ pas à la main). Le convertisseur est dans `integrations/cooklang.mjs`.
 2. Autorise l'accès au dépôt `danys-lab`.
 3. Les sections **Recettes**, **Articles** et **Page À propos** apparaissent (config : `.pages.yml`).
 
-Chaque enregistrement crée un commit sur `main`, et le site se met à jour tout seul.
+Pages CMS permet de choisir la branche (sélecteur en haut de l'écran) : choisis **`dev`**
+pour préparer du contenu sans le publier, puis publie-le avec la pull request dev → main.
+Sur `main`, chaque enregistrement est publié directement.
 Les images envoyées vont dans `shirones/assets/uploads/`.
 
 ## Mettre à jour le thème

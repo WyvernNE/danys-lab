@@ -1,0 +1,35 @@
+name: Vérifier le site
+
+# Contrôle chaque push sur dev et chaque pull request, sans rien publier :
+# le site n'est déployé que depuis main (deploy.yml).
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [main, dev]
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v7
+
+      - name: Installer pnpm (version de package.json)
+        uses: pnpm/action-setup@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Installer les dépendances
+        run: pnpm install --frozen-lockfile
+
+      - name: Vérifier les types (astro check)
+        run: pnpm astro check
+
+      - name: Construire le site
+        run: pnpm build
