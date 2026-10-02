@@ -1,26 +1,28 @@
-# About Shirone
+# À propos
 
-Welcome to the demo site of **Shirone** (白音) — an expressive, anime-inspired blog theme built on the **Material 3 Expressive (M3E)** design system.
+Salut, moi c'est **Dany** 👋
 
-::github{repo="LyraVoid/Shirone"}
+**Dany's Lab** est mon laboratoire personnel : un portfolio, un blog et un carnet
+de recettes café réunis au même endroit. J'y documente mes projets, mes essais et
+ce que j'apprends en chemin.
 
-## ✦ Design & Philosophy
+::github{repo="WyvernNE/danys-lab"}
 
-Shirone aims to combine the warmth of expressive anime aesthetics with the rigor of modern web engineering:
+## Ce qu'on trouve ici
 
-- **Dynamic Chromatic Spell**: Full dynamic HCT palette generation responding seamlessly to light/dark modes and user preferences with zero layout shifts.
-- **Seamless Shell Navigation**: Persistent application shell driven by Swup for continuous music playback, smooth page transitions, and preserved state.
-- **Rich Story Grimoire**: Markdown and MDX authoring with KaTeX math, Mermaid diagrams, interactive admonitions, expressive code blocks, and adaptive image galleries.
-- **Zero Extra Burden**: Optional integrations (comments, analytics, music widgets) load dynamically on demand — zero DOM footprint and zero bundle overhead when disabled.
+- **Le blog** — notes et retours d'expérience ;
+- **Le labo café** — des recettes de boissons précises et reproductibles ;
+- **Les projets** — ce sur quoi je travaille.
 
-## ✦ Tech Stack
+## Crédits
 
-- **Framework**: [Astro 7](https://astro.build/) & [Svelte 5](https://svelte.dev/) (Runes-driven islands)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) & [Stylus](https://stylus-lang.com/)
-- **Design Standard**: [Material 3 Expressive](https://m3.material.io/)
-- **Typography**: Outfit & Yozai (悠哉圆体) with automated build-time subsetting
-- **Search Engine**: [Pagefind](https://pagefind.app/) offline full-text search
+Ce site est construit avec [Astro](https://astro.build/) et habillé par le thème
+**[Shirone](https://github.com/LyraVoid/Shirone)**, créé par
+[LyraVoid](https://github.com/LyraVoid) et distribué en paquet npm
+([`shirones`](https://github.com/yCENzh/shirones)) par
+[yCENzh](https://github.com/yCENzh), sous licence MIT. Merci à eux pour ce
+superbe travail !
 
-## ✦ Credits
-
-- **Font**: [Yozai Font (悠哉字体)](https://github.com/lxgw/yozai-font) by [lxgw](https://github.com/lxgw)
+- **Design** : [Material 3 Expressive](https://m3.material.io/)
+- **Recherche** : [Pagefind](https://pagefind.app/)
+- **Police** : [Yozai Font](https://github.com/lxgw/yozai-font) par [lxgw](https://github.com/lxgw)

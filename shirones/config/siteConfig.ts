@@ -10,10 +10,11 @@ import { withUserConfig } from "@/utils/config-overlay.ts";
  * 类型见 src/types/config.ts。
  */
 export const siteConfig: SiteConfig = withUserConfig("site", {
-	site: "https://shirone.mysqil.com/",
-	base: "/",
-	title: "Shirone",
-	subtitle: "A Material 3 anime blog",
+	site: "https://wyvernne.github.io/",
+	// Le site est publié sur GitHub Pages sous /danys-lab/ (nom du dépôt).
+	base: "/danys-lab/",
+	title: "Dany's Lab",
+	subtitle: "Portfolio, projets et labo café",
 	// 电脑端顶栏标题与导航内容区域："left" 左对齐，"center" 居中。
 	topAppBar: {
 		contentAlign: "center",
@@ -27,11 +28,13 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 		reduceMotion: true, // 是否展示减少动效切换
 		texture: true, // 是否展示背景纹理选择
 	},
-	lang: "en", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
+	// Le thème ne déclare pas "fr" dans son type, mais le gère à l'exécution :
+	// <html lang="fr">, dates en français, et libellés fournis par i18nConfig.ts.
+	lang: "fr" as SiteConfig["lang"],
 	// IANA time zone for precise post and moment timestamps. It is independent of lang.
-	timeZone: "Asia/Shanghai",
+	timeZone: "Europe/Zurich",
 	themeColor: {
-		hue: 315, // Default hue 0-360. 站点设计默认粉紫（偏二次元）；262 紫 / 345 粉 也可选
+		hue: 35, // Teinte 0-360 : 35 = brun café (315 = rose-violet du thème d’origine)
 		fixed: false, // Hide the theme color picker for visitors
 		// Dynamic Material 3 palette style (TonalSpot/Vibrant/Content/Expressive/Rainbow/FruitSalad/Monochrome/Neutral/Fidelity)
 		style: "tonalSpot",
@@ -47,7 +50,7 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 	// 页面背景纹理系统配置（5 大精美预设 + 零开销 HCT 动态取色）
 	texture: {
 		enable: true, // 是否启用背景纹理系统
-		defaultPreset: "starlight", // 默认纹理预设："none" | "starlight" | "cyber-dots" | "topography" | "geometric" | "sakura"
+		defaultPreset: "none", // 默认纹理预设："none" | "starlight" | "cyber-dots" | "topography" | "geometric" | "sakura"
 		defaultOpacity: 0.12, // 默认纹理浓度 (0.05 ~ 0.25)
 		allowMotion: true, // 是否允许背景微动效（开启 reduced-motion 时自动静止）
 	},
@@ -57,8 +60,8 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 		// desktop 用于 >= 1024px；mobile 仅用于 < 1024px 的首页，手机非首页不显示壁纸。
 		// 数组顺序就是轮播顺序；只需要静态 Banner 时，每组保留一张图片即可。
 		src: {
-			desktop: ["assets/images/banner/desktop/1.webp"],
-			mobile: ["assets/images/banner/mobile/1.webp"],
+			desktop: ["../shirones/assets/banner/desktop.webp"],
+			mobile: ["../shirones/assets/banner/mobile.webp"],
 		},
 		// 图片裁切焦点："top"、"center" 或 "bottom"。
 		position: "center",
@@ -70,13 +73,11 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 		homeText: {
 			// 仅在首页 Banner 中显示，标题与副标题会上下居中排列。
 			enable: true,
-			title: "Shirone",
+			title: "Dany's Lab",
 			subtitle: [
-				"特別なことはないけど、君がいると十分です",
-				"今でもあなたは私の光",
-				"君ってさ、知らないうちに私の毎日になってたよ",
-				"君と話すと、なんか毎日がちょっと楽しくなるんだ",
-				"今日はなんでもない日。でも、ちょっとだけいい日",
+				"Un café, un éditeur, et beaucoup d'essais",
+				"Portfolio, projets et recettes",
+				"Moudre, extraire, recommencer",
 			],
 			typewriter: {
 				// 副标题逐字显示；关闭后直接显示完整副标题。
@@ -121,7 +122,9 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 	},
 	favicon: [
 		// 浏览器标签页图标，路径相对于 public 目录。
-		{ src: "/logo/icon.webp" },
+		{ src: "/favicon/favicon-light-32.png", theme: "light", sizes: "32x32" },
+		{ src: "/favicon/favicon-dark-32.png", theme: "dark", sizes: "32x32" },
+		{ src: "/favicon/favicon-light-192.png", sizes: "192x192" },
 	],
 });
 

@@ -1,37 +1,48 @@
-# Shirone Blog
+# Dany's Lab
 
-This site runs on [Shirone](https://github.com/LyraVoid/Shirone) — an
-anime-inspired, Material 3 Expressive blog theme for Astro, installed as the
-`shirones` npm package.
+Mon laboratoire personnel : portfolio, blog et carnet de recettes café.
 
-## Commands
+🌐 **En ligne :** <https://wyvernne.github.io/danys-lab/>
+
+## Commandes
 
 ```bash
-pnpm install   # install dependencies (run once after init)
-pnpm dev       # start the dev server at http://localhost:4321
-pnpm build     # static build → dist/
-pnpm preview   # preview the production build locally
+pnpm install   # installer les dépendances (une seule fois)
+pnpm dev       # serveur local sur http://localhost:4321/danys-lab/
+pnpm build     # génère le site statique dans dist/
+pnpm preview   # prévisualise le build
 ```
 
-## Project layout
+Chaque push sur `main` publie automatiquement le site sur GitHub Pages
+(`.github/workflows/deploy.yml`).
 
-| Path | What it is |
+## Où modifier quoi
+
+| Dossier | Contenu |
 | --- | --- |
-| `shirones/config/` | site configuration — URL, title, theme colour, sidebar, fonts (TypeScript, fully typed) |
-| `shirones/config/data/` | friends, projects, skills, timeline, … |
-| `shirones/content/` | your posts, moments and other collections |
-| `src/components/` | drop a file here to override a theme component (mirrors the theme's `src/components/` tree) |
-| `src/layouts/` | …same for layouts |
-| `public/` | static assets (favicons, banners, images) |
+| `shirones/config/` | réglages du site : titre, couleur, menu (`navBarConfig.ts`), barre latérale, profil… |
+| `shirones/config/i18nConfig.ts` | traduction française de l'interface |
+| `shirones/config/data/` | données des pages : projets, compétences, timeline… |
+| `shirones/content/posts/` | articles du blog et recettes (Markdown) |
+| `shirones/content/series/` | séries d'articles (ex. `labo-cafe.md`) |
+| `shirones/content/spec/about.md` | page « À propos » |
+| `public/` | images, logo, favicons, bannière |
+| `src/components/`, `src/layouts/` | remplacer un composant du thème (même chemin que dans le thème) |
 
-## Updating the theme
+Les articles de démonstration du thème restent consultables dans
+`node_modules/shirones/template/` après un `pnpm install`.
+
+## Mettre à jour le thème
 
 ```bash
-npx shirones init            # report drift only
-npx shirones init --update   # add missing files without replacement
-npx shirones init --force    # replace the template after backing up the old copy
+pnpm update shirones
+npx shirones init            # signale les écarts avec le modèle, ne modifie rien
 ```
 
-`--force` moves the previous `shirones/`, `public/` and project scaffold files
-to `.shirones-backup/` before copying the installed template. See the package
-documentation for the full configuration reference and component-override rules.
+## Crédits
+
+Ce site utilise le thème **[Shirone](https://github.com/LyraVoid/Shirone)**, créé par
+[LyraVoid](https://github.com/LyraVoid), via le paquet npm
+[`shirones`](https://github.com/yCENzh/shirones) maintenu par
+[yCENzh](https://github.com/yCENzh). Le thème est distribué sous licence MIT.
+Merci à eux !
