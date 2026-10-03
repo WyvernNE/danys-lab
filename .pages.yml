@@ -1,19 +1,23 @@
 # Configuration de Pages CMS (https://pagescms.org)
 # Connecte-toi sur https://app.pagescms.org avec ton compte GitHub, puis
 # choisis le dépôt danys-lab : chaque enregistrement devient un commit.
+#
+# Écris en français (sections sans suffixe), sur la branche dev : les autres
+# langues sont traduites par l'IA dans la branche i18n/traductions. Les sections
+# « (EN) » servent à relire et corriger ces traductions sur cette branche.
 
 media:
   # Images envoyées depuis le CMS (couvertures d'articles et de recettes).
   # Le chemin enregistré est relatif aux articles : c'est ce que le thème attend.
   input: shirones/assets/uploads
-  output: ../../assets/uploads
+  output: ../../../assets/uploads
 
 content:
   # ── Recettes Cooklang ────────────────────────────────────────────────────
   - name: recettes
     label: Recettes
     type: collection
-    path: shirones/recipes
+    path: shirones/recipes/fr
     filename: "{primary}.cook"
     extension: cook
     format: yaml-frontmatter
@@ -24,7 +28,7 @@ content:
       default:
         sort: published
         order: desc
-    fields:
+    fields: &recipe-fields
       - name: title
         label: Titre
         type: string
@@ -53,9 +57,8 @@ content:
         description: "Ex. : 5 min, 1 h 30 min"
       - name: difficulty
         label: Difficulté
-        type: select
-        options:
-          values: [facile, moyen, difficile]
+        type: string
+        description: "Ex. : facile, moyen, difficile"
       - name: seriesOrder
         label: Ordre dans la série Labo café
         type: number
@@ -72,7 +75,7 @@ content:
   - name: articles
     label: Articles
     type: collection
-    path: shirones/content/posts
+    path: shirones/content/fr/posts
     filename: "{primary}.md"
     format: yaml-frontmatter
     view:
@@ -81,7 +84,7 @@ content:
       default:
         sort: published
         order: desc
-    fields:
+    fields: &article-fields
       - name: title
         label: Titre
         type: string
@@ -122,9 +125,35 @@ content:
   - name: about
     label: Page À propos
     type: file
-    path: shirones/content/spec/about.md
+    path: shirones/content/fr/spec/about.md
     format: yaml-frontmatter
     fields:
       - name: body
         label: Contenu
         type: rich-text
+
+  # ── Relecture des traductions (anglais) ──────────────────────────────────
+  # À ouvrir sur la branche i18n/traductions pour corriger une traduction avant
+  # de fusionner sa pull request.
+  - name: recettes-en
+    label: Recettes (EN)
+    type: collection
+    path: shirones/recipes/en
+    filename: "{primary}.cook"
+    extension: cook
+    format: yaml-frontmatter
+    view:
+      fields: [title, published]
+      primary: title
+    fields: *recipe-fields
+
+  - name: articles-en
+    label: Articles (EN)
+    type: collection
+    path: shirones/content/en/posts
+    filename: "{primary}.md"
+    format: yaml-frontmatter
+    view:
+      fields: [title, published]
+      primary: title
+    fields: *article-fields

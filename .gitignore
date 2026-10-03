@@ -1,5 +1,6 @@
 # build output
 dist/
+.build/
 # generated types
 .astro/
 
@@ -27,4 +28,4 @@ pnpm-debug.log*
 .shirones/
 
 # articles générés depuis shirones/recipes/*.cook
-shirones/content/posts/recettes/
+shirones/content/*/posts/recettes/

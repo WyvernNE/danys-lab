@@ -1,5 +1,6 @@
 import type { ProfileConfig } from "@/types/config";
 import { withUserConfig } from "@/utils/config-overlay.ts";
+import { messages } from "../i18n/messages.mjs";
 
 /**
  * 博主资料：头像 / 名称 / 简介 / 社交链接（侧栏 Profile 卡片、页脚、RSS 作者等消费）。
@@ -8,7 +9,7 @@ import { withUserConfig } from "@/utils/config-overlay.ts";
 export const profileConfig: ProfileConfig = withUserConfig("profile", {
 	avatar: "../shirones/assets/avatar.webp", // Chemin relatif à src/ (donc ../shirones/…) ; commencer par "/" pour un fichier de public/
 	name: "Dany",
-	bio: "Je bricole du code, des projets et des recettes de café.",
+	bio: messages.profile.bio,
 	links: [
 		{
 			name: "GitHub",

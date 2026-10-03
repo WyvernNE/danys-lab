@@ -1,5 +1,6 @@
 import type { ProjectsConfig } from "@/types/projectsConfig";
 import { withUserConfig } from "@/utils/config-overlay.ts";
+import { messages } from "../i18n/messages.mjs";
 
 /**
  * 项目页行为与展示配置。
@@ -18,12 +19,12 @@ export const projectsConfig: ProjectsConfig = withUserConfig("projects", {
 	categories: [
 		{
 			key: "web",
-			label: "Web",
+			label: messages.projects.categories.web,
 			icon: "material-symbols:web",
 		},
 		{
 			key: "cafe",
-			label: "Café",
+			label: messages.projects.categories.cafe,
 			icon: "material-symbols:menu-book-rounded",
 		},
 	],

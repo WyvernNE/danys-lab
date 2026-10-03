@@ -18,14 +18,29 @@ dans `node_modules/shirones` : on ne le modifie pas, on le configure.
 ## Où se trouve quoi
 
 - `shirones/config/` : configuration du thème (site, menu, profil, i18n française…).
-- `shirones/recipes/*.cook` : recettes Cooklang (en-tête YAML + image du même nom).
+- `shirones/recipes/<code>/*.cook` : recettes Cooklang (en-tête YAML + image du même nom).
   Converties en articles par `integrations/cooklang.mjs` dans
-  `shirones/content/posts/recettes/` (généré, ignoré par Git, ne pas éditer).
-- `shirones/content/` : articles Markdown, séries, page À propos.
+  `shirones/content/<code>/posts/recettes/` (généré, ignoré par Git, ne pas éditer).
+- `shirones/content/<code>/` : articles Markdown, séries, page À propos.
 - `scripts/generate-images.mjs` : génère logo, favicons, bannière, couvertures (`pnpm images`).
 - `.pages.yml` : configuration de Pages CMS.
 - `src/components/`, `src/layouts/` : surcharges de composants du thème (à éviter si une
   option de config suffit).
+
+## Multilingue
+
+- Langues : `shirones/i18n/locales.mjs` (français = source, à la racine ; autres langues sous
+  `/danys-lab/<code>/`). Une construction Astro par langue (`PUBLIC_SITE_LOCALE`),
+  assemblées par `scripts/site.mjs` dans `dist/`.
+- Contenu par langue : `shirones/content/<code>/`, `shirones/recipes/<code>/`,
+  `shirones/i18n/messages/<code>.json`. Ne jamais écrire de texte visible en dur dans
+  `shirones/config/` : passer par `messages`.
+- Les traductions sont générées par `scripts/translate.mjs` (Claude) via
+  `.github/workflows/translate.yml`, puis validées par Dany dans une PR. Corriger une
+  traduction à la main est libre ; si on traduit soi-même une source française modifiée,
+  lancer `pnpm translate --accept` pour que la CI ne la retraduise pas.
+- Les slugs (noms de fichiers) sont identiques dans toutes les langues : le sélecteur
+  de langue s'appuie dessus.
 
 ## Points d'attention
 
