@@ -1,8 +1,8 @@
 ---
-title: Coffee lab
+title: Drinks lab
 status: ongoing
-defaultCategory: Coffee lab
+defaultCategory: Drink
 ---
 
-My drink recipes, tested and documented: weights, temperatures and extraction
-times. The series grows with every experiment.
+Coffee, matcha, cocktails: every drink is an experiment, tested and rated with
+the Comfort Index. Backed by weights, temperatures and timings.

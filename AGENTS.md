@@ -27,6 +27,27 @@ dans `node_modules/shirones` : on ne le modifie pas, on le configure.
 - `src/components/`, `src/layouts/` : surcharges de composants du thème (à éviter si une
   option de config suffit).
 
+## Le labo (surcouche Dany's Lab)
+
+- Positionnement : « Cozy · Simple · Opti » — un optimiseur du confort, à Berne.
+  Charte minimaliste : pas d'effets décoratifs (machine à écrire, carrousel, vagues,
+  textures, sélecteurs de couleurs) ; le côté « riche » est réservé aux données.
+- 4 piliers = 4 catégories : Boire, Bouger, Berne, Bâtir (EN : Drink, Move, Bern,
+  Build). Liste et icônes : `shirones/labConfig.ts` ; textes : `lab.pillars` des messages.
+- Liens (Luma, Instagram, YouTube, email) : `shirones/labConfig.ts`. Vide = masqué.
+- Champs d'en-tête ajoutés aux articles et recettes (`src/content.config.ts`) :
+  `experience` (bloc « Expérience #… » + « Verdict » avec Indice confort et radar),
+  `sponsor` (mention « Collaboration commerciale », obligatoire pour tout contenu
+  sponsorisé), `conceptual` (badge « Projet conceptuel »).
+- Rendu de ces blocs : surcharge `src/components/content/Markdown.astro` (retrouve
+  l'article par son URL). Calculs : `src/lab/experiences.ts` ; graphiques SVG : `src/lab/charts.ts`.
+- Pages ajoutées : `src/pages/dashboard.astro`, `events.astro`, `collab.astro`,
+  `experiences.csv.ts`. Textes des pages Events et Collaborer :
+  `shirones/content/<code>/spec/events.md` et `collab.md`.
+- Modèle d'étude de cas (brouillon) : `shirones/content/<code>/posts/modele-etude-de-cas/`.
+- Liens de menu personnalisés : toujours leur donner un `pageKey` unique, sinon le
+  thème les souligne sur les pages sans identifiant (articles, pages du labo).
+
 ## Multilingue
 
 - Langues : `shirones/i18n/locales.mjs` (français = source, à la racine ; autres langues sous

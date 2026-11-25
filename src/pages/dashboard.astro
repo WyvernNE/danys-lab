@@ -1,0 +1,187 @@
+---
+/**
+ * Tableau de bord : le labo en chiffres, recalculé à chaque build.
+ * Données : articles publiés + bloc `experience` (voir src/lab/experiences.ts).
+ */
+import { getSortedPosts } from "@utils/content-utils";
+import { url } from "@utils/url-utils";
+import { Icon } from "astro-icon/components";
+import SpecPage from "../components/lab/SpecPage.astro";
+import { barsSvg, columnsSvg } from "../lab/charts";
+import { formatNumber, formatScore, getExperiences, getPillars } from "../lab/experiences";
+import { currentLocaleCode } from "../../shirones/i18n/locales.mjs";
+import { messages } from "../../shirones/i18n/messages.mjs";
+
+const t = messages.lab.dashboard;
+const lang = currentLocaleCode();
+const posts = await getSortedPosts();
+const experiences = await getExperiences();
+const scored = experiences.filter((e) => e.score !== null);
+const avg = scored.length
+	? scored.reduce((a, e) => a + (e.score ?? 0), 0) / scored.length
+	: null;
+const words = posts.reduce(
+	(sum, p) => sum + (p.body ?? "").replace(/<!--[\s\S]*?-->/g, "").split(/\s+/).filter(Boolean).length,
+	0,
+);
+const pillars = getPillars();
+const byPillar = pillars.map((p) => ({
+	label: p.name,
+	value: posts.filter((post) => post.data.category === p.name).length,
+}));
+const columns = columnsSvg(
+	scored.map((e) => ({
+		label: formatNumber(e.data.number),
+		value: e.score ?? 0,
+		display: formatScore(e.score ?? 0, lang),
+	})),
+);
+const numberFmt = new Intl.NumberFormat(lang);
+const dateFmt = new Intl.DateTimeFormat(lang, { dateStyle: "medium" });
+const today = dateFmt.format(new Date());
+
+const stats = [
+	{ value: numberFmt.format(experiences.length), label: t.experiences },
+	{ value: avg !== null ? formatScore(avg, lang) : "–", label: t.avgScore },
+	{ value: numberFmt.format(posts.length), label: t.posts },
+	{ value: numberFmt.format(words), label: t.words },
+];
+---
+<SpecPage title={t.title} subtitle={t.subtitle} icon="material-symbols:dashboard-outline-rounded">
+	<div class="lab-dash">
+		<div class="lab-dash__stats">
+			{stats.map((s) => (
+				<div class="lab-dash__stat">
+					<strong>{s.value}</strong>
+					<span>{s.label}</span>
+				</div>
+			))}
+		</div>
+
+		<section>
+			<h2>{t.scores}</h2>
+			{columns ? <div class="lab-dash__chart" set:html={columns} /> : <p class="lab-muted">{t.empty}</p>}
+		</section>
+
+		<section>
+			<h2>{t.byPillar}</h2>
+			<div class="lab-dash__chart lab-dash__chart--bars" set:html={barsSvg(byPillar)} />
+		</section>
+
+		<section>
+			<h2>{t.log}</h2>
+			{experiences.length ? (
+				<div class="lab-dash__table-wrap">
+					<table class="lab-dash__table">
+						<thead>
+							<tr>
+								<th>{t.colNumber}</th><th>{t.colTitle}</th><th>{t.colPillar}</th>
+								<th class="num">{t.colScore}</th><th>{t.colDate}</th>
+							</tr>
+						</thead>
+						<tbody>
+							{[...experiences].reverse().map((e) => (
+								<tr>
+									<td class="mono">{formatNumber(e.data.number)}</td>
+									<td><a href={e.url}>{e.post.data.title}</a></td>
+									<td>{e.post.data.category}</td>
+									<td class="num mono">{e.score !== null ? formatScore(e.score, lang) : "–"}</td>
+									<td class="mono">{dateFmt.format(e.post.data.published)}</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			) : (
+				<p class="lab-muted">{t.empty}</p>
+			)}
+			<div class="lab-actions">
+				<a class="lab-button lab-button--tonal" href={url("/experiences.csv")} download>
+					<Icon name="material-symbols:download-rounded" /> {t.download}
+				</a>
+			</div>
+			<p class="lab-muted mono">{t.updated} {today} · 改善</p>
+		</section>
+	</div>
+</SpecPage>
+
+<style is:global>
+	.lab-dash h2 {
+		margin: 2rem 0 0.75rem;
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: var(--on-surface);
+	}
+	.lab-dash .mono {
+		font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+	}
+	.lab-dash__stats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+		gap: 0.75rem;
+	}
+	.lab-dash__stat {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+		padding: 1rem;
+		border-radius: var(--shape-corner-l, 16px);
+		background: var(--surface-container);
+	}
+	.lab-dash__stat strong {
+		font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+		font-size: 1.75rem;
+		line-height: 1.1;
+		color: var(--primary);
+	}
+	.lab-dash__stat span {
+		font-size: 0.85rem;
+		color: var(--on-surface-variant);
+	}
+	.lab-dash__chart {
+		max-width: 560px;
+	}
+	.lab-chart {
+		width: 100%;
+		height: auto;
+	}
+	.lab-chart__label {
+		font-size: 12px;
+		fill: var(--on-surface-variant);
+	}
+	.lab-chart__value {
+		font-size: 12px;
+		font-weight: 700;
+		fill: var(--on-surface);
+		font-family: ui-monospace, Menlo, Consolas, monospace;
+	}
+	.lab-dash__table-wrap {
+		overflow-x: auto;
+	}
+	.lab-dash__table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.9rem;
+	}
+	.lab-dash__table th,
+	.lab-dash__table td {
+		padding: 0.55rem 0.6rem;
+		text-align: left;
+		border-bottom: 1px solid var(--outline-variant);
+		white-space: nowrap;
+	}
+	.lab-dash__table th {
+		color: var(--on-surface-variant);
+		font-weight: 600;
+	}
+	.lab-dash__table .num {
+		text-align: right;
+	}
+	.lab-dash__table a {
+		color: var(--primary);
+		text-decoration: none;
+	}
+	.lab-dash__table a:hover {
+		text-decoration: underline;
+	}
+</style>

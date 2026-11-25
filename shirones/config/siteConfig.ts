@@ -32,12 +32,14 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 	},
 	// 显示设置面板控制：配置各项前端切换项的可见性（默认全部开启）。
 	displaySettings: {
-		colorStyle: true, // 是否展示配色风格 9 宫格
-		colorSpec: true, // 是否展示 Color Spec 调色规范切换
-		wallpaperMode: true, // 是否展示页面背景（纯色/横幅）切换
-		layoutMode: true, // 是否展示文章列表布局（列表/网格）切换
-		reduceMotion: true, // 是否展示减少动效切换
-		texture: true, // 是否展示背景纹理选择
+		// Charte « Cozy · Simple · Opti » : pas de réglages de décor pour les visiteurs.
+		// (Bac à sable : repasse un réglage à true pour le tester.)
+		colorStyle: false, // 是否展示配色风格 9 宫格
+		colorSpec: false, // 是否展示 Color Spec 调色规范切换
+		wallpaperMode: false, // 是否展示页面背景（纯色/横幅）切换
+		layoutMode: false, // 是否展示文章列表布局（列表/网格）切换
+		reduceMotion: true, // 是否展示减少动效切换 (accessibilité : on garde)
+		texture: false, // 是否展示背景纹理选择
 	},
 	// Le thème ne déclare pas "fr" dans son type, mais le gère à l'exécution :
 	// <html lang>, dates localisées, et libellés fournis par i18nConfig.ts.
@@ -46,7 +48,7 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 	timeZone: "Europe/Zurich",
 	themeColor: {
 		hue: 35, // Teinte 0-360 : 35 = brun café (315 = rose-violet du thème d’origine)
-		fixed: false, // Hide the theme color picker for visitors
+		fixed: true, // Couleur fixe (brun chaud) : pas de sélecteur pour les visiteurs
 		// Dynamic Material 3 palette style (TonalSpot/Vibrant/Content/Expressive/Rainbow/FruitSalad/Monochrome/Neutral/Fidelity)
 		style: "tonalSpot",
 		// Design spec version: "2021" (MD3) or "2025" (M3 Expressive)。角色集一致，
@@ -60,7 +62,7 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 	},
 	// 页面背景纹理系统配置（5 大精美预设 + 零开销 HCT 动态取色）
 	texture: {
-		enable: true, // 是否启用背景纹理系统
+		enable: false, // Charte minimaliste : pas de texture de fond
 		defaultPreset: "none", // 默认纹理预设："none" | "starlight" | "cyber-dots" | "topography" | "geometric" | "sakura"
 		defaultOpacity: 0.12, // 默认纹理浓度 (0.05 ~ 0.25)
 		allowMotion: true, // 是否允许背景微动效（开启 reduced-motion 时自动静止）
@@ -88,7 +90,8 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 			subtitle: messages.site.bannerSubtitles,
 			typewriter: {
 				// 副标题逐字显示；关闭后直接显示完整副标题。
-				enable: true,
+				// Désactivé (charte minimaliste) : le slogan s'affiche directement.
+				enable: false,
 				// 打字速度（每个字符间隔，毫秒）。
 				speed: 100,
 				// 回退反向删除速度（每个字符间隔，毫秒）。
@@ -101,17 +104,17 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 		},
 		carousel: {
 			// 是否开启多张图片自动轮播；多张图片时生效，单张图片时自动降级为静态展示。
-			enable: true,
+			enable: false,
 			// 轮播切换间隔时间（毫秒），运行时最小值限制为 3000ms。
 			interval: 6000,
 			// 交叉淡入淡出（Crossfade）过渡时长（毫秒，默认 1200ms）。
 			fadeDuration: 1200,
 			// 运镜呼吸动画模式："ken-burns"（默认，循环运镜）| "zoom-in"（推进）| "zoom-out"（拉远）| "pan-left"（左移）| "pan-right"（右移）| "none"（无运镜）。
-			animation: "ken-burns",
+			animation: "none",
 		},
 		waves: {
 			// 在 Banner 底部渲染页面背景色水波纹；关闭后不输出波浪 DOM。
-			enable: true,
+			enable: false,
 		},
 	},
 	// Markdown 正文图片处理；仅匹配远程图片，不会产生额外网络请求或客户端代码。

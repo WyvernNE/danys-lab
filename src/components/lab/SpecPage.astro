@@ -1,0 +1,74 @@
+---
+/**
+ * Page simple du labo : titre + texte Markdown (shirones/content/<langue>/spec/<id>.md)
+ * + un emplacement pour des boutons ou des données.
+ */
+import { getEntry, render } from "astro:content";
+import Card from "@components/atoms/display/Card.svelte";
+import PageHeader from "@components/atoms/display/PageHeader.astro";
+import Markdown from "@components/content/Markdown.astro";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { getMarkdownStylesheetAssets } from "@utils/markdown-assets";
+
+interface Props {
+	title: string;
+	subtitle?: string;
+	icon?: string;
+	/** Identifiant du texte dans la collection `spec` (facultatif). */
+	spec?: string;
+}
+const { title, subtitle, icon, spec } = Astro.props;
+const entry = spec ? await getEntry("spec", spec) : undefined;
+const rendered = entry ? await render(entry) : undefined;
+const Content = rendered?.Content;
+const assets = rendered
+	? await getMarkdownStylesheetAssets(rendered.remarkPluginFrontmatter.markdownSyntaxes)
+	: [];
+---
+<MainGridLayout title={title} description={subtitle}>
+	{assets.map(({ pack, css }) => <style is:inline slot="head" data-swup-optional={pack} set:html={css}></style>)}
+	<div class="flex w-full rounded-[var(--shape-corner-l)] overflow-hidden relative min-h-32 mb-4">
+		<Card color="var(--card-bg)" radius="l" class="z-10 p-6 lg:p-8 relative w-full">
+			<PageHeader title={title} subtitle={subtitle} icon={icon} />
+			<slot name="before" />
+			{Content && (
+				<Markdown class="mt-2">
+					<Content />
+				</Markdown>
+			)}
+			<slot />
+		</Card>
+	</div>
+</MainGridLayout>
+
+<style is:global>
+	.lab-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin: 0.5rem 0 1.5rem;
+	}
+	.lab-button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.7rem 1.25rem;
+		border-radius: 999px;
+		font-weight: 600;
+		background: var(--primary);
+		color: var(--on-primary);
+		text-decoration: none;
+		transition: opacity 0.15s;
+	}
+	.lab-button:hover {
+		opacity: 0.88;
+	}
+	.lab-button--tonal {
+		background: var(--secondary-container);
+		color: var(--on-secondary-container);
+	}
+	.lab-muted {
+		color: var(--on-surface-variant);
+		font-size: 0.9rem;
+	}
+</style>

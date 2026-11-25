@@ -24,12 +24,13 @@ import { withUserConfig } from "@/utils/config-overlay.ts";
 
 export const sidebarConfig: SidebarConfig = withUserConfig("sidebar", {
 	enable: true,
-	arrangement: "dual",
+	// Charte minimaliste : une seule colonne, seulement l'essentiel.
+	arrangement: "single",
 	side: "left",
 	components: [
 		{ type: "profile", enable: true, slot: "top" },
 		{ type: "music", enable: false, slot: "top" },
-		{ type: "announcement", enable: true, slot: "top", pages: ["home"] },
+		{ type: "announcement", enable: false, slot: "top", pages: ["home"] },
 		{
 			type: "categories",
 			enable: true,
@@ -45,7 +46,7 @@ export const sidebarConfig: SidebarConfig = withUserConfig("sidebar", {
 		},
 		{
 			type: "series",
-			enable: true,
+			enable: false,
 			slot: "sticky",
 			collapseAfter: 5,
 			pages: [
@@ -58,7 +59,7 @@ export const sidebarConfig: SidebarConfig = withUserConfig("sidebar", {
 		},
 		{
 			type: "tags",
-			enable: true,
+			enable: false,
 			slot: "sticky",
 			collapseAfter: 6,
 			pages: [
@@ -71,12 +72,12 @@ export const sidebarConfig: SidebarConfig = withUserConfig("sidebar", {
 		},
 		{
 			type: "stats",
-			enable: true,
+			enable: false,
 			slot: "top",
 			column: "secondary",
 			pages: ["home", "archive", "categories", "tags"],
 		},
-		{ type: "calendar", enable: true, slot: "top", column: "secondary" },
+		{ type: "calendar", enable: false, slot: "top", column: "secondary" },
 		{
 			type: "toc",
 			enable: true,

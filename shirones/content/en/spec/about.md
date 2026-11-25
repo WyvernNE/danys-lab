@@ -2,17 +2,37 @@
 
 Hi, I'm **Dany** 👋
 
-**Dany's Lab** is my personal laboratory: a portfolio, a blog and a coffee recipe
-notebook in one place. I document my projects, my experiments and what I learn
-along the way.
+I like comfort. Not luxury: everyday life that just flows, the drink that hits
+the spot, the commute that takes ten minutes less. So I test, I score and I
+tweak. This site is my logbook, from Bern.
+
+## Where I come from
+
+- **Between the bar and the keyboard**: bartender on one side, IT person on the
+  other (BSc in Computer Science, HE-Arc).
+- **Community & Growth**: several years growing the SwissBorg community, in Web3.
+- **Events and marketing**: projects run for others, people brought together
+  around a good idea.
+
+## How it works here
+
+Every post is a **numbered experiment**: a hypothesis, a test, then a **verdict**
+with a **Comfort Index** out of 10. Everything is sorted into four pillars:
+
+- **Drink** — coffee, matcha, cocktails;
+- **Move** — sport, outings and [events](/danys-lab/en/events/);
+- **Bern** — walks, spots and addresses;
+- **Build** — projects, case studies and the backstage of this site.
+
+All the numbers live on the [dashboard](/danys-lab/en/dashboard/). Want to work
+together? Head [this way](/danys-lab/en/collab/).
+
+## This site, my sandbox
+
+This site is also my playground: every new idea gets tested, scored and tweaked
+here. The code is public:
 
 ::github{repo="WyvernNE/danys-lab"}
-
-## What you will find here
-
-- **The blog** — notes and lessons learned;
-- **The coffee lab** — precise, reproducible drink recipes;
-- **The projects** — what I am working on.
 
 ## Credits
 

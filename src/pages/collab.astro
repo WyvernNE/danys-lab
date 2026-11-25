@@ -1,0 +1,30 @@
+---
+import { Icon } from "astro-icon/components";
+import SpecPage from "../components/lab/SpecPage.astro";
+import { labConfig } from "../../shirones/labConfig";
+import { messages } from "../../shirones/i18n/messages.mjs";
+
+const t = messages.lab.collab;
+const { email, instagram, youtube } = labConfig.links;
+---
+<SpecPage title={t.title} subtitle={t.subtitle} icon="material-symbols:handshake-outline-rounded" spec="collab">
+	<div class="lab-actions">
+		{email ? (
+			<a class="lab-button" href={`mailto:${email}`}>
+				<Icon name="material-symbols:mail-outline-rounded" /> {t.email}
+			</a>
+		) : (
+			<p class="lab-muted">{t.soon}</p>
+		)}
+		{instagram && (
+			<a class="lab-button lab-button--tonal" href={instagram} target="_blank" rel="noopener">
+				<Icon name="fa6-brands:instagram" /> Instagram
+			</a>
+		)}
+		{youtube && (
+			<a class="lab-button lab-button--tonal" href={youtube} target="_blank" rel="noopener">
+				<Icon name="fa6-brands:youtube" /> YouTube
+			</a>
+		)}
+	</div>
+</SpecPage>

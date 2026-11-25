@@ -1,23 +1,32 @@
 ---
 title: Welcome to the lab
 published: 2026-10-02
-description: The starting point of Dany's Lab — what you will find here.
+updated: 2026-11-25
+description: "The logbook of a comfort optimiser in Bern: how things work here."
 image: ./cover.webp
 tags: [Announcement]
-category: Journal
+category: Build
 pinned: true
 ---
 
-Welcome to **Dany's Lab**, my little online laboratory.
+Welcome to **Dany's Lab**, my logbook. Cozy, simple, opti.
 
-Here you will find:
+The idea: make everyday life a little more comfortable, one experiment at a
+time. I test, I score, I tweak, and I publish the results.
 
-- **The blog** — notes, discoveries and lessons learned;
-- **The [coffee lab](/danys-lab/en/series/labo-cafe/)** — my drink recipes, with exact ratios and timings;
-- **The [projects](/danys-lab/en/projects/)** — what I am working on right now.
+## How to read this site
 
-The source code of the site is public:
+Every post is a **numbered experiment**. At the top: the hypothesis. At the
+bottom: the **verdict**, with a **Comfort Index** out of 10 and what I keep or
+drop.
 
-::github{repo="WyvernNE/danys-lab"}
+Four pillars:
 
-Happy reading, and enjoy your coffee ☕
+- **Drink** — coffee, matcha, cocktails, in the [drinks lab](/danys-lab/en/series/labo-cafe/);
+- **Move** — sport, outings and [events](/danys-lab/en/events/);
+- **Bern** — walks, spots and addresses;
+- **Build** — [projects](/danys-lab/en/projects/), case studies and the backstage of this site.
+
+The numbers live on the [dashboard](/danys-lab/en/dashboard/).
+
+Tested. Scored. Tweaked.
