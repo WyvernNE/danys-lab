@@ -1,8 +1,8 @@
 ---
-title: Labo café
+title: Labo boissons
 status: ongoing
-defaultCategory: Labo café
+defaultCategory: Boire
 ---
 
-Mes recettes de boissons, testées et notées : grammages, températures et temps
-d'extraction. La série s'enrichit au fil des essais.
+Café, matcha, cocktails : chaque boisson est une expérience, testée et notée avec
+l'Indice confort. Grammages, températures et temps à l'appui.

@@ -139,9 +139,34 @@ export const LinkPresets: Record<string, NavBarLink> = {
 	LaboCafe: {
 		name: messages.nav.laboCafe,
 		url: "/series/labo-cafe/",
+		pageKey: "lab-labo-cafe",
 		// Icône choisie parmi celles que le menu mobile sait afficher hors ligne
 		// (liste : node_modules/shirones/src/generated/local-icon-collections.ts).
 		icon: "material-symbols:menu-book-rounded",
+	},
+	Experiences: {
+		name: messages.nav.experiences,
+		url: "/archive/",
+		icon: "material-symbols:edit-note-outline-rounded",
+		pageKey: "archive",
+	},
+	Dashboard: {
+		name: messages.nav.dashboard,
+		url: "/dashboard/",
+		pageKey: "lab-dashboard",
+		icon: "material-symbols:widgets-rounded",
+	},
+	Events: {
+		name: messages.nav.events,
+		url: "/events/",
+		pageKey: "lab-events",
+		icon: "material-symbols:calendar-month-outline-rounded",
+	},
+	Collab: {
+		name: messages.nav.collab,
+		url: "/collab/",
+		pageKey: "lab-collab",
+		icon: "material-symbols:handshake-outline-rounded",
 	},
 	GitHub: {
 		name: "GitHub",
@@ -163,6 +188,9 @@ const languageMenu: NavBarLink | null =
 		? {
 				name: `${current.flag} ${current.code.toUpperCase()}`,
 				children: LOCALES.map((l) => ({
+					// pageKey unique : évite que le thème souligne ce lien sur les
+					// pages sans identifiant (articles, pages du labo).
+					pageKey: `lang-${l.code}`,
 					name: `${l.flag} ${l.label}`,
 					url: `${SITE_ORIGIN}${localeBase(l.code)}?lang=${l.code}`,
 				})),
@@ -172,14 +200,17 @@ const languageMenu: NavBarLink | null =
 const defaultNavBarConfig: NavBarConfig = {
 	links: [
 		LinkPresets.Home,
-		LinkPresets.Archive,
-		LinkPresets.LaboCafe,
+		LinkPresets.Experiences,
+		LinkPresets.Dashboard,
 		LinkPresets.Projects,
+		LinkPresets.Events,
 		LinkPresets.About,
 		{
 			name: i18n(I18nKey.more),
 			icon: "material-symbols:apps-rounded",
 			children: [
+				LinkPresets.Collab,
+				LinkPresets.LaboCafe,
 				LinkPresets.Categories,
 				LinkPresets.Tags,
 				LinkPresets.Series,

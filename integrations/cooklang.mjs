@@ -46,6 +46,8 @@ const PASSTHROUGH = [
 	"updated",
 	"lang",
 	"sponsor",
+	"experience",
+	"conceptual",
 ];
 
 const parser = new Parser();
@@ -93,6 +95,8 @@ function formatServings(servings) {
 function yamlValue(value) {
 	if (Array.isArray(value)) return `[${value.map((v) => yamlValue(v)).join(", ")}]`;
 	if (typeof value === "number" || typeof value === "boolean") return String(value);
+	// Objets (ex. le bloc `experience`) : le JSON est du YAML valide.
+	if (typeof value === "object" && value !== null) return JSON.stringify(value);
 	return JSON.stringify(String(value));
 }
 

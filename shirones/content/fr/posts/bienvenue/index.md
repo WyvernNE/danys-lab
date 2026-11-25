@@ -1,23 +1,32 @@
 ---
 title: Bienvenue au labo
 published: 2026-10-02
-description: Le point de départ de Dany's Lab — ce que vous trouverez ici.
+updated: 2026-11-25
+description: "Un Neuchâtelois perdu à Berne : comment ça marche ici."
 image: ./cover.webp
 tags: [Annonce]
-category: Journal
+category: Bâtir
 pinned: true
 ---
 
-Bienvenue sur **Dany's Lab**, mon petit laboratoire en ligne.
+Bienvenue sur **Dany's Lab**, le carnet de bord d'un Neuchâtelois perdu à Berne.
 
-On y trouve :
+L'idée : trouver mes repères, une expérience à la fois. Je teste, je note,
+j'ajuste, et je publie les résultats.
 
-- **Le blog** — notes, découvertes et retours d'expérience ;
-- **Le [labo café](/danys-lab/series/labo-cafe/)** — mes recettes de boissons, avec les ratios et les temps exacts ;
-- **Les [projets](/danys-lab/projects/)** — ce sur quoi je travaille en ce moment.
+## Comment lire ce site
 
-Le code source du site est public :
+Chaque article est une **expérience numérotée**. En haut : l'hypothèse. En bas :
+le **verdict**, avec un **Indice confort** sur 10, ce que je garde ou jette, et
+**+1 repère** au compteur.
 
-::github{repo="WyvernNE/danys-lab"}
+Quatre piliers :
 
-Bonne lecture, et bon café ☕
+- **Boire** — café, matcha, cocktails, dans le [labo boissons](/danys-lab/series/labo-cafe/) ;
+- **Bouger** — sport, sorties et [events](/danys-lab/events/) ;
+- **Berne** — balades, spots et adresses ;
+- **Bâtir** — [projets](/danys-lab/projects/), études de cas et coulisses de ce site.
+
+Les chiffres, et mon niveau actuel, sont sur le [tableau de bord](/danys-lab/dashboard/).
+
+*Un peu moins perdu qu'hier.*

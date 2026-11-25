@@ -53,6 +53,34 @@ Après une fusion, remettre `dev` à jour : `git checkout dev && git pull origin
 Les articles de démonstration du thème restent consultables dans
 `node_modules/shirones/template/` après un `pnpm install`.
 
+## Écrire une expérience
+
+Chaque article (ou recette) peut devenir une expérience numérotée : ajoute ce bloc
+dans son en-tête. Le site affiche alors l'en-tête « Expérience #… » et le verdict avec
+l'Indice confort, et l'ajoute au [tableau de bord](https://wyvernne.github.io/danys-lab/dashboard/).
+
+```yaml
+category: Boire            # un des 4 piliers : Boire, Bouger, Berne, Bâtir
+experience:
+  number: 3
+  hypothesis: "Un cold brew de 12 h est plus doux qu'un espresso allongé."
+  variable: "Le temps d'infusion"
+  duration: "2 semaines"
+  criteria:                # notes sur 10 ; 3 critères minimum pour le radar
+    - { name: Goût, score: 8 }
+    - { name: Effort, score: 9 }
+    - { name: Prix, score: 7 }
+  # score: 8.2             # facultatif : sinon, moyenne des critères
+  keep: "L'infusion de 12 h"
+  drop: "Le café moulu trop fin"
+  next: "#004 : la même chose avec du thé"
+sponsor: "Nom du partenaire"   # seulement pour un contenu sponsorisé
+conceptual: true               # seulement pour une étude de cas non commandée
+```
+
+Les liens Luma, Instagram, YouTube et l'email de contact se règlent dans
+`shirones/labConfig.ts`.
+
 ## Écrire une recette (Cooklang)
 
 Crée `shirones/recipes/fr/ma-recette.cook` :

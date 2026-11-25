@@ -2,13 +2,16 @@
 	"en": {
 		"content:moments/.gitkeep": "e3b0c44298fc1c14",
 		"content:posts/bienvenue/cover.webp": "f81a8f16a94d8c92",
-		"content:posts/bienvenue/index.md": "9d4e169b2e408cc9",
-		"content:series/labo-cafe.md": "92dc5c24bffbe516",
-		"content:spec/about.md": "663544f757eb7f47",
-		"messages:": "f3f005a16427d8b6",
-		"recipes:espresso.cook": "456648487262c6c9",
+		"content:posts/bienvenue/index.md": "8ce2c53b93bb1d10",
+		"content:posts/modele-etude-de-cas/index.md": "ecaab7a7cdb6c2c2",
+		"content:series/labo-cafe.md": "efd4d943e174525d",
+		"content:spec/about.md": "f9721b76dc8d03a5",
+		"content:spec/collab.md": "468d23bc3ffcc443",
+		"content:spec/events.md": "4a078228019bb3b6",
+		"messages:": "c81e33d32908ae15",
+		"recipes:espresso.cook": "a977a27bf75af37c",
 		"recipes:espresso.webp": "a0ca2d2f58b2b34e",
-		"recipes:matcha-latte.cook": "44bdfc6cade0b38a",
+		"recipes:matcha-latte.cook": "2dd527df506aa5d0",
 		"recipes:matcha-latte.webp": "43f485b3f28504eb"
 	}
 }

@@ -1,42 +1,44 @@
 {
 	"site": {
-		"subtitle": "Portfolio, projects and coffee lab",
+		"subtitle": "A Romand lost in Bern — I test, I score, I tweak.",
 		"bannerSubtitles": [
-			"A coffee, an editor, and lots of experiments",
-			"Portfolio, projects and recipes",
-			"Grind, brew, repeat"
+			"A Romand lost in Bern."
 		]
 	},
 	"profile": {
-		"bio": "I tinker with code, projects and coffee recipes."
+		"bio": "A Romand lost in Bern. I test, I score, I tweak, until it feels like home."
 	},
 	"announcement": {
 		"content": "Welcome to the lab! The site is under construction, recipes are coming little by little.",
 		"linkText": "View the repository"
 	},
 	"nav": {
-		"laboCafe": "Coffee lab",
-		"language": "Language"
+		"laboCafe": "Drinks lab",
+		"language": "Language",
+		"experiences": "Experiments",
+		"dashboard": "Numbers",
+		"events": "Events",
+		"collab": "Work with me"
 	},
 	"projects": {
 		"categories": {
 			"web": "Web",
-			"cafe": "Coffee"
+			"cafe": "Drinks"
 		},
 		"items": {
 			"danys-lab": {
-				"summary": "This site: portfolio, blog and coffee recipe notebook, built with Astro and the Shirone theme.",
+				"summary": "This site, and my sandbox: every idea gets tested, scored and tweaked here. Astro, Shirone theme, home-made data.",
 				"coverAlt": "Preview of the Dany's Lab home page"
 			},
 			"labo-cafe": {
-				"title": "Coffee lab",
-				"summary": "My tested and documented drink recipes: ratios, temperatures and extraction times.",
-				"coverAlt": "Espresso recipe card"
+				"title": "Drinks lab",
+				"summary": "Coffee, matcha, cocktails: drinks rated with the Comfort Index, backed by ratios and timings.",
+				"coverAlt": "Espresso experiment card"
 			}
 		}
 	},
 	"recipes": {
-		"defaultCategory": "Coffee lab",
+		"defaultCategory": "Drink",
 		"servings": "Servings",
 		"time": "Time",
 		"difficulty": "Difficulty",
@@ -45,5 +47,91 @@
 		"steps": "Steps",
 		"prepTime": "prep",
 		"cookTime": "cook"
+	},
+	"lab": {
+		"pillars": {
+			"boire": {
+				"name": "Drink",
+				"description": "Coffee, matcha, cocktails: drinks that make the day a bit softer."
+			},
+			"bouger": {
+				"name": "Move",
+				"description": "Sport, outings and events: moving without overthinking it."
+			},
+			"berne": {
+				"name": "Bern",
+				"description": "Walks, spots and addresses to enjoy Bern comfortably."
+			},
+			"batir": {
+				"name": "Build",
+				"description": "Projects, case studies, tools and the backstage of this site."
+			}
+		},
+		"experience": {
+			"label": "Experiment",
+			"hypothesis": "Hypothesis",
+			"variable": "Variable",
+			"duration": "Duration",
+			"verdict": "Verdict",
+			"score": "Comfort Index",
+			"inProgress": "in progress",
+			"versus": "vs",
+			"keep": "Keep",
+			"drop": "Drop",
+			"next": "Next experiment",
+			"signature": "A little less lost than yesterday.",
+			"radar": "Comfort Index breakdown",
+			"landmark": "+1 landmark",
+			"landmarkNumber": "landmark #"
+		},
+		"conceptual": {
+			"badge": "Concept project",
+			"note": "A self-initiated study, not commissioned by or affiliated with the brands or places mentioned."
+		},
+		"sponsor": {
+			"label": "Paid partnership with"
+		},
+		"dashboard": {
+			"title": "Dashboard",
+			"subtitle": "The lab in numbers, recomputed on every publish.",
+			"experiences": "experiments",
+			"posts": "posts",
+			"avgScore": "Average Comfort Index",
+			"words": "words written",
+			"events": "events",
+			"byPillar": "Posts per pillar",
+			"scores": "Comfort Index per experiment",
+			"log": "Experiment log",
+			"colNumber": "#",
+			"colTitle": "Experiment",
+			"colPillar": "Pillar",
+			"colScore": "Index",
+			"colDate": "Date",
+			"download": "Download the data (CSV)",
+			"empty": "No data yet: the first experiment is on its way.",
+			"updated": "Data as of",
+			"landmarks": "landmarks found",
+			"level": "Level",
+			"nextLevel": "to",
+			"maxLevel": "Top level reached. Bern has no secrets left."
+		},
+		"events": {
+			"title": "Events",
+			"subtitle": "Move, drink something good, meet people. In Bern.",
+			"luma": "See the events on Luma",
+			"soon": "Sign-ups open soon on Luma."
+		},
+		"collab": {
+			"title": "Work with me",
+			"subtitle": "Brands, venues and Bern projects: let's work together.",
+			"email": "Send an email",
+			"soon": "The contact address is coming soon."
+		},
+		"levels": [
+			"Fresh off the train",
+			"Curious tourist",
+			"Almost Bernese",
+			"Bernese by adoption"
+		]
 	}
 }

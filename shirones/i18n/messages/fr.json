@@ -1,42 +1,44 @@
 {
 	"site": {
-		"subtitle": "Portfolio, projets et labo café",
+		"subtitle": "Un Neuchâtelois perdu à Berne — je teste, je note, j'ajuste.",
 		"bannerSubtitles": [
-			"Un café, un éditeur, et beaucoup d'essais",
-			"Portfolio, projets et recettes",
-			"Moudre, extraire, recommencer"
+			"Un Neuchâtelois perdu à Berne."
 		]
 	},
 	"profile": {
-		"bio": "Je bricole du code, des projets et des recettes de café."
+		"bio": "Neuchâtelois perdu à Berne. Je teste, je note, j'ajuste, jusqu'à m'y sentir chez moi."
 	},
 	"announcement": {
 		"content": "Bienvenue au labo ! Le site est en construction, les recettes arrivent petit à petit.",
 		"linkText": "Voir le dépôt"
 	},
 	"nav": {
-		"laboCafe": "Labo café",
-		"language": "Langue"
+		"laboCafe": "Labo boissons",
+		"language": "Langue",
+		"experiences": "Expériences",
+		"dashboard": "Chiffres",
+		"events": "Events",
+		"collab": "Collaborer"
 	},
 	"projects": {
 		"categories": {
 			"web": "Web",
-			"cafe": "Café"
+			"cafe": "Boissons"
 		},
 		"items": {
 			"danys-lab": {
-				"summary": "Ce site : portfolio, blog et carnet de recettes café, construit avec Astro et le thème Shirone.",
+				"summary": "Ce site, et mon bac à sable : chaque idée y est testée, notée et ajustée. Astro, thème Shirone, données faites maison.",
 				"coverAlt": "Aperçu de la page d'accueil de Dany's Lab"
 			},
 			"labo-cafe": {
-				"title": "Labo café",
-				"summary": "Mes recettes de boissons notées et testées : ratios, températures et temps d'extraction.",
-				"coverAlt": "Fiche recette de l'espresso"
+				"title": "Labo boissons",
+				"summary": "Café, matcha, cocktails : des boissons notées avec l'Indice confort, ratios et temps à l'appui.",
+				"coverAlt": "Fiche de l'expérience espresso"
 			}
 		}
 	},
 	"recipes": {
-		"defaultCategory": "Labo café",
+		"defaultCategory": "Boire",
 		"servings": "Portions",
 		"time": "Temps",
 		"difficulty": "Difficulté",
@@ -46,9 +48,95 @@
 		"prepTime": "préparation",
 		"cookTime": "cuisson"
 	},
+	"lab": {
+		"pillars": {
+			"boire": {
+				"name": "Boire",
+				"description": "Café, matcha, cocktails : des boissons qui rendent la journée plus douce."
+			},
+			"bouger": {
+				"name": "Bouger",
+				"description": "Sport, sorties et events : bouger sans se prendre la tête."
+			},
+			"berne": {
+				"name": "Berne",
+				"description": "Balades, spots et adresses pour vivre Berne confortablement."
+			},
+			"batir": {
+				"name": "Bâtir",
+				"description": "Projets, études de cas, outils et coulisses de ce site."
+			}
+		},
+		"experience": {
+			"label": "Expérience",
+			"hypothesis": "Hypothèse",
+			"variable": "Variable",
+			"duration": "Durée",
+			"verdict": "Verdict",
+			"score": "Indice confort",
+			"inProgress": "en cours",
+			"versus": "vs",
+			"keep": "On garde",
+			"drop": "On jette",
+			"next": "Expérience suivante",
+			"signature": "Un peu moins perdu qu'hier.",
+			"radar": "Détail de l'Indice confort",
+			"landmark": "+1 repère",
+			"landmarkNumber": "repère n°"
+		},
+		"conceptual": {
+			"badge": "Projet conceptuel",
+			"note": "Étude réalisée de ma propre initiative, sans commande ni lien avec les marques ou lieux cités."
+		},
+		"sponsor": {
+			"label": "Collaboration commerciale avec"
+		},
+		"dashboard": {
+			"title": "Tableau de bord",
+			"subtitle": "Le labo en chiffres, recalculé à chaque publication.",
+			"experiences": "expériences",
+			"posts": "articles",
+			"avgScore": "Indice confort moyen",
+			"words": "mots écrits",
+			"events": "events",
+			"byPillar": "Articles par pilier",
+			"scores": "Indice confort par expérience",
+			"log": "Journal des expériences",
+			"colNumber": "#",
+			"colTitle": "Expérience",
+			"colPillar": "Pilier",
+			"colScore": "Indice",
+			"colDate": "Date",
+			"download": "Télécharger les données (CSV)",
+			"empty": "Pas encore de données : la première expérience arrive.",
+			"updated": "Données au",
+			"landmarks": "repères trouvés",
+			"level": "Niveau",
+			"nextLevel": "avant",
+			"maxLevel": "Niveau maximum atteint. Berne n'a plus de secret."
+		},
+		"events": {
+			"title": "Events",
+			"subtitle": "Bouger, boire un bon truc, rencontrer du monde. À Berne.",
+			"luma": "Voir les events sur Luma",
+			"soon": "Les inscriptions ouvrent bientôt sur Luma."
+		},
+		"collab": {
+			"title": "Collaborer",
+			"subtitle": "Marques, lieux et projets bernois : travaillons ensemble.",
+			"email": "Écrire un email",
+			"soon": "L'adresse de contact arrive bientôt."
+		},
+		"levels": [
+			"Fraîchement débarqué",
+			"Touriste éclairé",
+			"Presque Bernois",
+			"Bernois d'adoption"
+		]
+	},
 	"theme": {
 		"home": "Accueil",
-		"about": "À propos",
+		"about": "À propos",
 		"archive": "Archives",
 		"archiveGroup": "Regrouper les archives par",
 		"archiveGroupYear": "Par année",

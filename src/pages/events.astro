@@ -1,0 +1,21 @@
+---
+import { Icon } from "astro-icon/components";
+import SpecPage from "../components/lab/SpecPage.astro";
+import { labConfig } from "../../shirones/labConfig";
+import { messages } from "../../shirones/i18n/messages.mjs";
+
+const t = messages.lab.events;
+const luma = labConfig.links.luma;
+---
+<SpecPage title={t.title} subtitle={t.subtitle} icon="material-symbols:calendar-month-outline-rounded" spec="events">
+	<div slot="before" class="lab-actions">
+		{luma ? (
+			<a class="lab-button" href={luma} target="_blank" rel="noopener">
+				<Icon name="material-symbols:event-outline-rounded" /> {t.luma}
+				<Icon name="material-symbols:open-in-new-rounded" />
+			</a>
+		) : (
+			<p class="lab-muted">{t.soon}</p>
+		)}
+	</div>
+</SpecPage>

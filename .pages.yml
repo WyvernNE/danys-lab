@@ -59,8 +59,39 @@ content:
         label: Difficulté
         type: string
         description: "Ex. : facile, moyen, difficile"
+      - name: category
+        label: Pilier
+        type: string
+        description: "Boire, Bouger, Berne ou Bâtir (en anglais : Drink, Move, Bern, Build)"
+      - name: experience
+        label: Expérience (bloc en tête + verdict en fin d'article)
+        type: object
+        fields:
+          - { name: number, label: Numéro, type: number, required: true }
+          - { name: hypothesis, label: Hypothèse, type: text, required: true }
+          - { name: variable, label: Variable, type: string }
+          - { name: duration, label: Durée, type: string }
+          - name: criteria
+            label: Critères de l'Indice confort (notes sur 10, 3 minimum pour le radar)
+            type: object
+            list: true
+            fields:
+              - { name: name, label: Critère, type: string }
+              - { name: score, label: Note /10, type: number }
+          - { name: score, label: "Indice confort /10 (vide : moyenne des critères)", type: number }
+          - { name: keep, label: On garde, type: string }
+          - { name: drop, label: On jette, type: string }
+          - { name: next, label: Expérience suivante, type: string }
+      - name: sponsor
+        label: Partenaire (contenu sponsorisé)
+        type: string
+        description: Affiche « Collaboration commerciale avec … » en tête. Obligatoire dès qu'il y a une contrepartie.
+      - name: conceptual
+        label: Projet conceptuel (non commandé)
+        type: boolean
+        default: false
       - name: seriesOrder
-        label: Ordre dans la série Labo café
+        label: Ordre dans la série Labo boissons
         type: number
       - name: draft
         label: Brouillon (non publié)
@@ -100,8 +131,36 @@ content:
         label: Couverture
         type: image
       - name: category
-        label: Catégorie
+        label: Pilier
         type: string
+        description: "Boire, Bouger, Berne ou Bâtir (en anglais : Drink, Move, Bern, Build)"
+      - name: experience
+        label: Expérience (bloc en tête + verdict en fin d'article)
+        type: object
+        fields:
+          - { name: number, label: Numéro, type: number, required: true }
+          - { name: hypothesis, label: Hypothèse, type: text, required: true }
+          - { name: variable, label: Variable, type: string }
+          - { name: duration, label: Durée, type: string }
+          - name: criteria
+            label: Critères de l'Indice confort (notes sur 10, 3 minimum pour le radar)
+            type: object
+            list: true
+            fields:
+              - { name: name, label: Critère, type: string }
+              - { name: score, label: Note /10, type: number }
+          - { name: score, label: "Indice confort /10 (vide : moyenne des critères)", type: number }
+          - { name: keep, label: On garde, type: string }
+          - { name: drop, label: On jette, type: string }
+          - { name: next, label: Expérience suivante, type: string }
+      - name: sponsor
+        label: Partenaire (contenu sponsorisé)
+        type: string
+        description: Affiche « Collaboration commerciale avec … » en tête. Obligatoire dès qu'il y a une contrepartie.
+      - name: conceptual
+        label: Projet conceptuel (non commandé)
+        type: boolean
+        default: false
       - name: tags
         label: Tags
         type: string
@@ -126,6 +185,26 @@ content:
     label: Page À propos
     type: file
     path: shirones/content/fr/spec/about.md
+    format: yaml-frontmatter
+    fields:
+      - name: body
+        label: Contenu
+        type: rich-text
+
+  - name: events
+    label: Page Events
+    type: file
+    path: shirones/content/fr/spec/events.md
+    format: yaml-frontmatter
+    fields:
+      - name: body
+        label: Contenu
+        type: rich-text
+
+  - name: collab
+    label: Page Collaborer
+    type: file
+    path: shirones/content/fr/spec/collab.md
     format: yaml-frontmatter
     fields:
       - name: body

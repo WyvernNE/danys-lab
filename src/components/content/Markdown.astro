@@ -1,0 +1,241 @@
+---
+/**
+ * Surcharge du conteneur Markdown du thème Shirone
+ * (node_modules/shirones/src/components/content/Markdown.astro).
+ *
+ * Même rendu que l'original, plus, sur les articles concernés :
+ * - la mention « Collaboration commerciale » (champ `sponsor`) ;
+ * - le badge « Projet conceptuel » (champ `conceptual`) ;
+ * - les blocs « Expérience #… » (en tête) et « Verdict » (en fin), champ `experience`.
+ */
+import {
+	findExperienceByPath,
+	findPostByPath,
+	formatNumber,
+	formatScore,
+	getCriteria,
+} from "../../lab/experiences";
+import { radarSvg } from "../../lab/charts";
+import { currentLocaleCode } from "../../../shirones/i18n/locales.mjs";
+import { messages } from "../../../shirones/i18n/messages.mjs";
+
+interface Props {
+	class: string;
+}
+const className = Astro.props.class;
+
+const lang = currentLocaleCode();
+const t = messages.lab;
+const post = await findPostByPath(Astro.url.pathname);
+const exp = post?.data.experience ? await findExperienceByPath(Astro.url.pathname) : null;
+const radar = exp ? radarSvg(getCriteria(exp.data), t.experience.radar) : "";
+const delta =
+	exp?.delta !== null && exp?.delta !== undefined && exp.previous
+		? `${exp.delta >= 0 ? "+" : "−"}${formatScore(Math.abs(exp.delta), lang)} ${t.experience.versus} ${formatNumber(exp.previous.number)}`
+		: "";
+---
+{post?.data.sponsor && (
+	<p class="lab-notice lab-notice--sponsor">
+		{t.sponsor.label} <strong>{post.data.sponsor}</strong>
+	</p>
+)}
+
+{post?.data.conceptual && (
+	<p class="lab-notice lab-notice--concept">
+		<strong>{t.conceptual.badge}</strong> · {t.conceptual.note}
+	</p>
+)}
+
+{exp && (
+	<section class="lab-exp" lang={lang} aria-label={`${t.experience.label} ${formatNumber(exp.data.number)}`}>
+		<p class="lab-exp__title">━━━ {t.experience.label.toUpperCase()} {formatNumber(exp.data.number)} ━━━</p>
+		<dl class="lab-exp__grid">
+			<dt>{t.experience.hypothesis}</dt><dd>{exp.data.hypothesis}</dd>
+			{exp.data.variable && <><dt>{t.experience.variable}</dt><dd>{exp.data.variable}</dd></>}
+			{exp.data.duration && <><dt>{t.experience.duration}</dt><dd>{exp.data.duration}</dd></>}
+		</dl>
+	</section>
+)}
+
+<div data-pagefind-body class={`prose dark:prose-invert prose-base !max-w-none custom-md markdown-content ${className}`}>
+	<slot />
+</div>
+
+{exp && (
+	<section class="lab-exp lab-exp--verdict" lang={lang} aria-label={t.experience.verdict}>
+		<span class="lab-stamp" aria-hidden="true">改善</span>
+		<p class="lab-exp__title">━━━ {t.experience.verdict.toUpperCase()} ━━━</p>
+		<p class="lab-exp__score">
+			<span>{t.experience.score}</span>
+			{exp.score !== null ? (
+				<strong>{formatScore(exp.score, lang)} <small>/ 10</small></strong>
+			) : (
+				<strong>{t.experience.inProgress}</strong>
+			)}
+			{delta && <span class="lab-exp__delta">({delta})</span>}
+		</p>
+		{radar && <div class="lab-exp__radar" set:html={radar} />}
+		<dl class="lab-exp__grid">
+			{exp.data.keep && <><dt>{t.experience.keep}</dt><dd>{exp.data.keep}</dd></>}
+			{exp.data.drop && <><dt>{t.experience.drop}</dt><dd>{exp.data.drop}</dd></>}
+			{exp.data.next && <><dt>{t.experience.next}</dt><dd>→ {exp.data.next}</dd></>}
+		</dl>
+		<p class="lab-exp__landmark">
+			<span class="lab-exp__chip">{t.experience.landmark}</span>
+			<span>{t.experience.landmarkNumber}{exp.landmark}</span>
+		</p>
+		<p class="lab-exp__signature">{t.experience.signature}</p>
+	</section>
+)}
+
+<style lang="stylus" is:global>
+@import "../../../node_modules/shirones/src/styles/markdown/generic.styl"
+</style>
+
+<style is:global>
+	.lab-notice {
+		margin: 0 0 1.25rem;
+		padding: 0.6rem 0.9rem;
+		border-radius: var(--shape-corner-m, 12px);
+		font-size: 0.875rem;
+		color: var(--on-surface-variant);
+		background: var(--surface-container-high);
+	}
+	.lab-notice--sponsor {
+		border-left: 3px solid var(--primary);
+	}
+	.lab-notice--concept {
+		border-left: 3px dashed var(--outline);
+	}
+
+	.lab-exp {
+		position: relative;
+		margin: 0 0 1.75rem;
+		padding: 1.1rem 1.25rem;
+		border-radius: var(--shape-corner-l, 16px);
+		background: var(--surface-container);
+		font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+		font-size: 0.9rem;
+		line-height: 1.6;
+		color: var(--on-surface);
+	}
+	.lab-exp--verdict {
+		margin: 2rem 0 1.5rem;
+	}
+	.lab-exp__title {
+		margin: 0 0 0.6rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		color: var(--primary);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: clip;
+	}
+	.lab-exp__grid {
+		display: grid;
+		grid-template-columns: max-content 1fr;
+		gap: 0.25rem 1rem;
+		margin: 0;
+	}
+	.lab-exp__grid dt {
+		color: var(--on-surface-variant);
+	}
+	.lab-exp__grid dt::after {
+		content: ":";
+	}
+	/* Typographie française : espace avant les deux-points. */
+	.lab-exp:lang(fr) .lab-exp__grid dt::after {
+		content: "\00a0:";
+	}
+	.lab-exp__grid dd {
+		margin: 0;
+	}
+	.lab-exp__score {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 0.5rem;
+		margin: 0 0 0.75rem;
+	}
+	.lab-exp__score strong {
+		font-size: 1.6rem;
+		color: var(--primary);
+	}
+	.lab-exp__score small {
+		font-size: 0.9rem;
+		color: var(--on-surface-variant);
+	}
+	.lab-exp__delta {
+		color: var(--on-surface-variant);
+	}
+	.lab-exp__radar {
+		max-width: 340px;
+		margin: 0 auto 0.75rem;
+	}
+	.lab-radar {
+		width: 100%;
+		height: auto;
+		overflow: visible;
+	}
+	.lab-radar__label {
+		font-size: 11px;
+		fill: var(--on-surface-variant);
+	}
+	.lab-radar__value {
+		font-weight: 700;
+		fill: var(--primary);
+	}
+	.lab-exp__landmark {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		margin: 1rem 0 0;
+		color: var(--on-surface-variant);
+	}
+	.lab-exp__chip {
+		padding: 0.15rem 0.6rem;
+		border-radius: 999px;
+		background: var(--primary);
+		color: var(--on-primary);
+		font-weight: 700;
+	}
+	.lab-exp__signature {
+		margin: 0.6rem 0 0;
+		font-weight: 700;
+		font-style: italic;
+	}
+	/* Clin d'œil : 改善 (kaizen), en tampon discret. */
+	.lab-stamp {
+		position: absolute;
+		top: 0.9rem;
+		right: 1rem;
+		padding: 0.15rem 0.35rem;
+		border: 1.5px solid currentColor;
+		border-radius: 4px;
+		color: var(--primary);
+		opacity: 0.35;
+		font-family: serif;
+		font-size: 0.8rem;
+		letter-spacing: 0.1em;
+		transform: rotate(-6deg);
+		user-select: none;
+	}
+	@media (max-width: 640px) {
+		.lab-exp__grid {
+			grid-template-columns: 1fr;
+		}
+		.lab-exp__grid dt::after,
+		.lab-exp:lang(fr) .lab-exp__grid dt::after {
+			content: "";
+		}
+		.lab-exp__grid dd {
+			margin-bottom: 0.4rem;
+		}
+	}
+</style>
+
+<script>
+	import { bindMarkdownRuntime } from "@utils/markdown-runtime";
+
+	bindMarkdownRuntime();
+</script>
