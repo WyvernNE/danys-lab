@@ -47,7 +47,7 @@ const delta =
 )}
 
 {exp && (
-	<section class="lab-exp" aria-label={`${t.experience.label} ${formatNumber(exp.data.number)}`}>
+	<section class="lab-exp" lang={lang} aria-label={`${t.experience.label} ${formatNumber(exp.data.number)}`}>
 		<p class="lab-exp__title">━━━ {t.experience.label.toUpperCase()} {formatNumber(exp.data.number)} ━━━</p>
 		<dl class="lab-exp__grid">
 			<dt>{t.experience.hypothesis}</dt><dd>{exp.data.hypothesis}</dd>
@@ -62,7 +62,7 @@ const delta =
 </div>
 
 {exp && (
-	<section class="lab-exp lab-exp--verdict" aria-label={t.experience.verdict}>
+	<section class="lab-exp lab-exp--verdict" lang={lang} aria-label={t.experience.verdict}>
 		<span class="lab-stamp" aria-hidden="true">改善</span>
 		<p class="lab-exp__title">━━━ {t.experience.verdict.toUpperCase()} ━━━</p>
 		<p class="lab-exp__score">
@@ -80,6 +80,10 @@ const delta =
 			{exp.data.drop && <><dt>{t.experience.drop}</dt><dd>{exp.data.drop}</dd></>}
 			{exp.data.next && <><dt>{t.experience.next}</dt><dd>→ {exp.data.next}</dd></>}
 		</dl>
+		<p class="lab-exp__landmark">
+			<span class="lab-exp__chip">{t.experience.landmark}</span>
+			<span>{t.experience.landmarkNumber}{exp.landmark}</span>
+		</p>
 		<p class="lab-exp__signature">{t.experience.signature}</p>
 	</section>
 )}
@@ -137,7 +141,11 @@ const delta =
 		color: var(--on-surface-variant);
 	}
 	.lab-exp__grid dt::after {
-		content: " :";
+		content: ":";
+	}
+	/* Typographie française : espace avant les deux-points. */
+	.lab-exp:lang(fr) .lab-exp__grid dt::after {
+		content: "\00a0:";
 	}
 	.lab-exp__grid dd {
 		margin: 0;
@@ -177,9 +185,24 @@ const delta =
 		font-weight: 700;
 		fill: var(--primary);
 	}
-	.lab-exp__signature {
-		margin: 0.9rem 0 0;
+	.lab-exp__landmark {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		margin: 1rem 0 0;
+		color: var(--on-surface-variant);
+	}
+	.lab-exp__chip {
+		padding: 0.15rem 0.6rem;
+		border-radius: 999px;
+		background: var(--primary);
+		color: var(--on-primary);
 		font-weight: 700;
+	}
+	.lab-exp__signature {
+		margin: 0.6rem 0 0;
+		font-weight: 700;
+		font-style: italic;
 	}
 	/* Clin d'œil : 改善 (kaizen), en tampon discret. */
 	.lab-stamp {
@@ -201,7 +224,8 @@ const delta =
 		.lab-exp__grid {
 			grid-template-columns: 1fr;
 		}
-		.lab-exp__grid dt::after {
+		.lab-exp__grid dt::after,
+		.lab-exp:lang(fr) .lab-exp__grid dt::after {
 			content: "";
 		}
 		.lab-exp__grid dd {

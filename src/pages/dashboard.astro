@@ -8,7 +8,7 @@ import { url } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
 import SpecPage from "../components/lab/SpecPage.astro";
 import { barsSvg, columnsSvg } from "../lab/charts";
-import { formatNumber, formatScore, getExperiences, getPillars } from "../lab/experiences";
+import { formatNumber, formatScore, getExperiences, getLevel, getPillars } from "../lab/experiences";
 import { currentLocaleCode } from "../../shirones/i18n/locales.mjs";
 import { messages } from "../../shirones/i18n/messages.mjs";
 
@@ -40,8 +40,9 @@ const numberFmt = new Intl.NumberFormat(lang);
 const dateFmt = new Intl.DateTimeFormat(lang, { dateStyle: "medium" });
 const today = dateFmt.format(new Date());
 
+const level = getLevel(experiences.length);
 const stats = [
-	{ value: numberFmt.format(experiences.length), label: t.experiences },
+	{ value: `+${numberFmt.format(experiences.length)}`, label: t.landmarks },
 	{ value: avg !== null ? formatScore(avg, lang) : "–", label: t.avgScore },
 	{ value: numberFmt.format(posts.length), label: t.posts },
 	{ value: numberFmt.format(words), label: t.words },
@@ -56,6 +57,18 @@ const stats = [
 					<span>{s.label}</span>
 				</div>
 			))}
+		</div>
+
+		<div class="lab-dash__level">
+			<p><span>{t.level}</span> <strong>{level.name}</strong></p>
+			<div class="lab-dash__progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow={Math.round(level.progress * 100)}>
+				<span style={`width:${Math.max(level.progress * 100, 3)}%`}></span>
+			</div>
+			<p class="lab-muted mono">
+				{level.nextName ? (
+					<>{level.remaining} {t.landmarks.split(" ")[0]} {t.nextLevel} <strong>{level.nextName}</strong></>
+				) : t.maxLevel}
+			</p>
 		</div>
 
 		<section>
@@ -137,6 +150,37 @@ const stats = [
 	.lab-dash__stat span {
 		font-size: 0.85rem;
 		color: var(--on-surface-variant);
+	}
+	.lab-dash__level {
+		margin-top: 0.75rem;
+		padding: 1rem 1.1rem;
+		border-radius: var(--shape-corner-l, 16px);
+		background: var(--surface-container);
+	}
+	.lab-dash__level p {
+		margin: 0;
+	}
+	.lab-dash__level p span {
+		color: var(--on-surface-variant);
+	}
+	.lab-dash__level strong {
+		color: var(--primary);
+	}
+	.lab-dash__level > p:first-child strong {
+		font-size: 1.15rem;
+	}
+	.lab-dash__progress {
+		height: 10px;
+		margin: 0.6rem 0;
+		border-radius: 999px;
+		background: var(--surface-container-highest);
+		overflow: hidden;
+	}
+	.lab-dash__progress span {
+		display: block;
+		height: 100%;
+		border-radius: 999px;
+		background: var(--primary);
 	}
 	.lab-dash__chart {
 		max-width: 560px;

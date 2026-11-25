@@ -21,6 +21,8 @@ export interface Experience {
 	previous: { number: number; score: number } | null;
 	/** Écart avec l'expérience précédente du même pilier. */
 	delta: number | null;
+	/** Numéro du repère gagné (1 = première expérience publiée). */
+	landmark: number;
 }
 
 const round1 = (n: number) => Math.round(n * 10) / 10;
@@ -47,7 +49,7 @@ export async function getExperiences(): Promise<Experience[]> {
 		(a, b) => a.data.experience!.number - b.data.experience!.number,
 	);
 	const lastByPillar = new Map<string, { number: number; score: number }>();
-	return sorted.map((post) => {
+	return sorted.map((post, index) => {
 		const data = post.data.experience!;
 		const score = computeScore(data);
 		const pillar = post.data.category ?? "";
@@ -55,7 +57,7 @@ export async function getExperiences(): Promise<Experience[]> {
 		const delta =
 			previous && score !== null ? round1(score - previous.score) : null;
 		if (score !== null) lastByPillar.set(pillar, { number: data.number, score });
-		return { post, url: getPostUrl(post), data, score, previous, delta };
+		return { post, url: getPostUrl(post), data, score, previous, delta, landmark: index + 1 };
 	});
 }
 
@@ -95,4 +97,22 @@ export function getPillars() {
 		{ name: string; description: string }
 	>;
 	return labConfig.pillars.map((p) => ({ ...p, ...texts[p.key] }));
+}
+
+/** Niveau atteint pour un nombre de repères, et progression vers le suivant. */
+export function getLevel(landmarks: number) {
+	const names = messages.lab.levels as string[];
+	const thresholds = labConfig.levels as readonly number[];
+	let index = 0;
+	thresholds.forEach((t, i) => {
+		if (landmarks >= t) index = i;
+	});
+	const next = index + 1 < thresholds.length ? thresholds[index + 1] : null;
+	const from = thresholds[index];
+	return {
+		name: names[index] ?? "",
+		nextName: next !== null ? (names[index + 1] ?? "") : null,
+		remaining: next !== null ? next - landmarks : 0,
+		progress: next !== null ? (landmarks - from) / (next - from) : 1,
+	};
 }

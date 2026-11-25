@@ -1,12 +1,12 @@
 {
 	"site": {
-		"subtitle": "Cozy. Simple. Opti. — depuis Berne",
+		"subtitle": "Un Neuchâtelois perdu à Berne — je teste, je note, j'ajuste.",
 		"bannerSubtitles": [
-			"Cozy. Simple. Opti."
+			"Un Neuchâtelois perdu à Berne."
 		]
 	},
 	"profile": {
-		"bio": "Je rends le quotidien un peu plus confortable, une expérience à la fois. Depuis Berne."
+		"bio": "Neuchâtelois perdu à Berne. Je teste, je note, j'ajuste, jusqu'à m'y sentir chez moi."
 	},
 	"announcement": {
 		"content": "Bienvenue au labo ! Le site est en construction, les recettes arrivent petit à petit.",
@@ -79,8 +79,10 @@
 			"keep": "On garde",
 			"drop": "On jette",
 			"next": "Expérience suivante",
-			"signature": "Testé. Noté. Ajusté.",
-			"radar": "Détail de l'Indice confort"
+			"signature": "Un peu moins perdu qu'hier.",
+			"radar": "Détail de l'Indice confort",
+			"landmark": "+1 repère",
+			"landmarkNumber": "repère n°"
 		},
 		"conceptual": {
 			"badge": "Projet conceptuel",
@@ -107,7 +109,11 @@
 			"colDate": "Date",
 			"download": "Télécharger les données (CSV)",
 			"empty": "Pas encore de données : la première expérience arrive.",
-			"updated": "Données au"
+			"updated": "Données au",
+			"landmarks": "repères trouvés",
+			"level": "Niveau",
+			"nextLevel": "avant",
+			"maxLevel": "Niveau maximum atteint. Berne n'a plus de secret."
 		},
 		"events": {
 			"title": "Events",
@@ -120,7 +126,13 @@
 			"subtitle": "Marques, lieux et projets bernois : travaillons ensemble.",
 			"email": "Écrire un email",
 			"soon": "L'adresse de contact arrive bientôt."
-		}
+		},
+		"levels": [
+			"Fraîchement débarqué",
+			"Touriste éclairé",
+			"Presque Bernois",
+			"Bernois d'adoption"
+		]
 	},
 	"theme": {
 		"home": "Accueil",

@@ -1,10 +1,11 @@
 # À propos
 
-Salut, moi c'est **Dany** 👋
+Salut, moi c'est **Dany** 👋 Un Neuchâtelois perdu à Berne.
 
-J'aime le confort. Pas le luxe : le quotidien qui roule tout seul, la boisson qui
-tombe juste, le trajet qui prend dix minutes de moins. Alors je teste, je note et
-j'ajuste. Ce site est mon carnet de bord, depuis Berne.
+Nouvelle ville, nouvelle langue, nouveaux repères à trouver. Alors j'ai fait ce que
+je sais faire : tester. Les cafés, les balades, les spots, les routines. Je note,
+j'ajuste, et je garde ce qui rend le quotidien plus confortable. Ce site est mon
+carnet de bord, jusqu'à ce que Berne devienne chez moi.
 
 ## D'où je viens
 
@@ -18,7 +19,9 @@ j'ajuste. Ce site est mon carnet de bord, depuis Berne.
 ## Comment ça marche ici
 
 Chaque article est une **expérience numérotée** : une hypothèse, un test, puis un
-**verdict** avec un **Indice confort** sur 10. Tout est rangé en quatre piliers :
+**verdict** avec un **Indice confort** sur 10. Chaque expérience me rapporte
+**+1 repère**, et les repères font monter de niveau : de « Fraîchement débarqué »
+à « Bernois d'adoption ». Tout est rangé en quatre piliers :
 
 - **Boire** — café, matcha, cocktails ;
 - **Bouger** — sport, sorties et [events](/danys-lab/events/) ;

@@ -1,10 +1,11 @@
 # About
 
-Hi, I'm **Dany** 👋
+Hi, I'm **Dany** 👋 A Romand (French-speaking Swiss, from Neuchâtel) lost in Bern.
 
-I like comfort. Not luxury: everyday life that just flows, the drink that hits
-the spot, the commute that takes ten minutes less. So I test, I score and I
-tweak. This site is my logbook, from Bern.
+New city, new language, new landmarks to find. So I did what I know how to do:
+test. Cafés, walks, spots, routines. I score, I tweak, and I keep whatever makes
+everyday life more comfortable. This site is my logbook, until Bern feels like
+home.
 
 ## Where I come from
 
@@ -17,7 +18,9 @@ tweak. This site is my logbook, from Bern.
 ## How it works here
 
 Every post is a **numbered experiment**: a hypothesis, a test, then a **verdict**
-with a **Comfort Index** out of 10. Everything is sorted into four pillars:
+with a **Comfort Index** out of 10. Each experiment earns me **+1 landmark**, and
+landmarks level me up: from "Fresh off the train" to "Bernese by adoption".
+Everything is sorted into four pillars:
 
 - **Drink** — coffee, matcha, cocktails;
 - **Move** — sport, outings and [events](/danys-lab/en/events/);

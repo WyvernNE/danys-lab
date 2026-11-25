@@ -27,6 +27,11 @@ export const labConfig = {
 		{ key: "berne", icon: "material-symbols:map-outline-rounded" },
 		{ key: "batir", icon: "material-symbols:construction-rounded" },
 	],
+	/**
+	 * Gamification : chaque expérience publiée = +1 repère. Seuils (en repères)
+	 * des niveaux ; leurs noms sont dans `lab.levels` des messages, même ordre.
+	 */
+	levels: [0, 5, 15, 30],
 } as const;
 
 export type PillarKey = (typeof labConfig.pillars)[number]["key"];

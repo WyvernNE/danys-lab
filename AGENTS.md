@@ -29,8 +29,10 @@ dans `node_modules/shirones` : on ne le modifie pas, on le configure.
 
 ## Le labo (surcouche Dany's Lab)
 
-- Positionnement : « Cozy · Simple · Opti » — un optimiseur du confort, à Berne.
-  Charte minimaliste : pas d'effets décoratifs (machine à écrire, carrousel, vagues,
+- Positionnement : « Un Neuchâtelois perdu à Berne » (EN : « A Romand lost in Bern »).
+  Méthode : je teste, je note, j'ajuste. Signature : « Un peu moins perdu qu'hier. »
+  Gamification : chaque expérience = +1 repère ; niveaux dans `shirones/labConfig.ts`.
+- Règles de design « Cozy · Simple · Opti » (internes, pas un slogan). Charte minimaliste : pas d'effets décoratifs (machine à écrire, carrousel, vagues,
   textures, sélecteurs de couleurs) ; le côté « riche » est réservé aux données.
 - 4 piliers = 4 catégories : Boire, Bouger, Berne, Bâtir (EN : Drink, Move, Bern,
   Build). Liste et icônes : `shirones/labConfig.ts` ; textes : `lab.pillars` des messages.

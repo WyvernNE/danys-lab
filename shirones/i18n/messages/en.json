@@ -1,12 +1,12 @@
 {
 	"site": {
-		"subtitle": "Cozy. Simple. Opti. — from Bern",
+		"subtitle": "A Romand lost in Bern — I test, I score, I tweak.",
 		"bannerSubtitles": [
-			"Cozy. Simple. Opti."
+			"A Romand lost in Bern."
 		]
 	},
 	"profile": {
-		"bio": "I make everyday life a little more comfortable, one experiment at a time. From Bern."
+		"bio": "A Romand lost in Bern. I test, I score, I tweak, until it feels like home."
 	},
 	"announcement": {
 		"content": "Welcome to the lab! The site is under construction, recipes are coming little by little.",
@@ -79,8 +79,10 @@
 			"keep": "Keep",
 			"drop": "Drop",
 			"next": "Next experiment",
-			"signature": "Tested. Scored. Tweaked.",
-			"radar": "Comfort Index breakdown"
+			"signature": "A little less lost than yesterday.",
+			"radar": "Comfort Index breakdown",
+			"landmark": "+1 landmark",
+			"landmarkNumber": "landmark #"
 		},
 		"conceptual": {
 			"badge": "Concept project",
@@ -107,7 +109,11 @@
 			"colDate": "Date",
 			"download": "Download the data (CSV)",
 			"empty": "No data yet: the first experiment is on its way.",
-			"updated": "Data as of"
+			"updated": "Data as of",
+			"landmarks": "landmarks found",
+			"level": "Level",
+			"nextLevel": "to",
+			"maxLevel": "Top level reached. Bern has no secrets left."
 		},
 		"events": {
 			"title": "Events",
@@ -120,6 +126,12 @@
 			"subtitle": "Brands, venues and Bern projects: let's work together.",
 			"email": "Send an email",
 			"soon": "The contact address is coming soon."
-		}
+		},
+		"levels": [
+			"Fresh off the train",
+			"Curious tourist",
+			"Almost Bernese",
+			"Bernese by adoption"
+		]
 	}
 }
